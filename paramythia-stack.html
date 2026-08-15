@@ -1,0 +1,409 @@
+<title>The Paramythia Stack</title>
+<style>
+  :root {
+    --paper:      #FAF9F6;
+    --surface:    #F1EFE9;
+    --surface-2:  #E6E3DA;
+    --ink:        #191C22;
+    --ink-2:      #4A4F5C;
+    --ink-3:      #767C8B;
+    --rule:       #D9D5CB;
+    --rule-soft:  #E6E3DA;
+    --indigo:     #2C3A63;
+    --ochre:      #A9641F;
+    --olive:      #4E6B44;
+    --rust:       #97362B;
+
+    --display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --body: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:#131519; --surface:#1B1E25; --surface-2:#252932;
+      --ink:#EEEBE4; --ink-2:#B2B6C0; --ink-3:#7E8492;
+      --rule:#2E333D; --rule-soft:#23272F;
+      --indigo:#94A9DD; --ochre:#DFA05C; --olive:#93B683; --rust:#E48375;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:#131519; --surface:#1B1E25; --surface-2:#252932;
+    --ink:#EEEBE4; --ink-2:#B2B6C0; --ink-3:#7E8492;
+    --rule:#2E333D; --rule-soft:#23272F;
+    --indigo:#94A9DD; --ochre:#DFA05C; --olive:#93B683; --rust:#E48375;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { max-width: 68ch; margin: 0 auto; padding: 0 24px 140px; }
+
+  .masthead {
+    padding: 72px 0 40px;
+    border-bottom: 2px solid var(--ink);
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ochre); margin: 0;
+  }
+  h1 {
+    font-family: var(--display); font-size: clamp(38px, 8vw, 58px);
+    line-height: 1.04; font-weight: 400; margin: 0;
+    text-wrap: balance; letter-spacing: -0.015em;
+  }
+  .standfirst {
+    font-family: var(--display); font-size: 20px; line-height: 1.5;
+    color: var(--ink-2); margin: 0; max-width: 52ch; text-wrap: balance;
+  }
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 8px 28px;
+    font-family: var(--mono); font-size: 11.5px; color: var(--ink-3);
+    letter-spacing: 0.03em; padding-top: 6px;
+  }
+  .meta b { color: var(--ink-2); font-weight: 500; }
+
+  section { padding-top: 56px; display: flex; flex-direction: column; gap: 18px; }
+
+  .part-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ink-3); margin: 0;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .part-label::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+
+  h2 {
+    font-family: var(--display); font-size: clamp(27px, 5vw, 34px);
+    line-height: 1.15; font-weight: 400; margin: 0;
+    text-wrap: balance; letter-spacing: -0.01em;
+  }
+  h3 {
+    font-size: 16px; font-weight: 650; line-height: 1.35;
+    margin: 20px 0 -6px; letter-spacing: -0.005em;
+  }
+  p { margin: 0; text-wrap: pretty; }
+  li { text-wrap: pretty; padding-left: 2px; }
+  ul, ol { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 9px; }
+  li::marker { color: var(--ink-3); }
+  strong { font-weight: 650; }
+  a { color: var(--indigo); text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--ochre); outline-offset: 3px; }
+  code {
+    font-family: var(--mono); font-size: 0.855em; background: var(--surface);
+    border: 1px solid var(--rule-soft); padding: 1px 5px; border-radius: 3px;
+  }
+
+  .summary {
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 5px;
+    padding: 26px 28px; display: flex; flex-direction: column; gap: 16px; margin-top: 44px;
+  }
+  .summary h2 { font-size: 22px; font-family: var(--body); font-weight: 650; letter-spacing: -0.01em; }
+
+  .verdict {
+    display: flex; flex-direction: column; gap: 8px; padding: 18px 20px;
+    background: var(--surface); border-left: 3px solid var(--ink-3); border-radius: 0 4px 4px 0;
+  }
+  .verdict.hard { border-left-color: var(--rust); }
+  .verdict.care { border-left-color: var(--ochre); }
+  .verdict.good { border-left-color: var(--olive); }
+  .verdict-tag {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.13em;
+    text-transform: uppercase; font-weight: 500; color: var(--ink-3);
+  }
+  .verdict.hard .verdict-tag { color: var(--rust); }
+  .verdict.care .verdict-tag { color: var(--ochre); }
+  .verdict.good .verdict-tag { color: var(--olive); }
+  .verdict p { font-size: 16px; line-height: 1.6; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 5px; background: var(--surface); }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 520px; }
+  caption {
+    caption-side: bottom; text-align: left; font-size: 13px; color: var(--ink-3);
+    padding: 10px 16px 0; line-height: 1.5;
+  }
+  th {
+    text-align: left; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.11em;
+    text-transform: uppercase; font-weight: 500; color: var(--ink-3);
+    padding: 12px 16px; border-bottom: 1px solid var(--rule); white-space: nowrap; vertical-align: bottom;
+  }
+  td { padding: 12px 16px; border-bottom: 1px solid var(--rule-soft); vertical-align: top; line-height: 1.5; }
+  tbody tr:last-child td { border-bottom: none; }
+  .num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 13.5px; }
+  .item { font-weight: 600; white-space: nowrap; }
+  .total-row td { background: var(--surface-2); font-weight: 650; }
+  .total-row .num { font-weight: 650; }
+  .free { color: var(--olive); font-weight: 650; }
+
+  .phase {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px;
+    padding: 14px 18px; background: var(--surface-2); border-radius: 5px;
+  }
+  .phase-when {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--indigo); font-weight: 500;
+  }
+  .phase-cost { font-family: var(--mono); font-size: 15px; font-variant-numeric: tabular-nums; margin-left: auto; }
+
+  .no-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .no-list li { display: grid; grid-template-columns: 82px 1fr; gap: 14px; padding: 0; align-items: start; }
+  .no-tag {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 7px; border-radius: 3px; text-align: center;
+    background: var(--rust); color: var(--paper); margin-top: 4px;
+  }
+  .no-tag.later { background: var(--ochre); }
+
+  .colophon {
+    margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+    line-height: 1.7; letter-spacing: 0.02em;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .masthead, section { animation: rise 0.5s ease-out both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  }
+
+  @page { size: A4; margin: 17mm 15mm 15mm; }
+  @media print {
+    :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
+      --paper:#FFFFFF; --surface:#F4F2EC; --surface-2:#E8E5DC;
+      --ink:#16181C; --ink-2:#3E434E; --ink-3:#6B7180;
+      --rule:#CFCBC1; --rule-soft:#E2DED5;
+      --indigo:#23305A; --ochre:#92531A; --olive:#3F5838; --rust:#872C22;
+    }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; animation: none !important; }
+    body { font-size: 10.2pt; line-height: 1.55; }
+    .page, .masthead, section, .summary, .verdict, .no-list { display: block; }
+    .page { max-width: none; padding: 0; }
+    .masthead > * + *, section > * + *, .summary > * + *, .verdict > * + * { margin-top: 10px; }
+    ul, ol { margin-top: 8px; }
+    ul > li + li, ol > li + li { margin-top: 6px; }
+    .no-list > li + li { margin-top: 11px; }
+    h1 { font-size: 30pt; } h2 { font-size: 17pt; } h3 { font-size: 11pt; }
+    .standfirst { font-size: 12pt; max-width: none; }
+    .summary h2 { font-size: 14pt; }
+    table { font-size: 8.8pt; min-width: 0; } th { font-size: 7pt; }
+    .masthead { padding: 0 0 22px; } section { padding-top: 26px; }
+    .verdict, .table-wrap, .phase, .no-list li, tr, li { break-inside: avoid; page-break-inside: avoid; }
+    h1, h2, h3, .part-label, .phase { break-after: avoid; page-break-after: avoid; }
+    .table-wrap { overflow: visible; }
+  }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">Companion to the Paramythia Brief</p>
+    <h1>The Paramythia Stack</h1>
+    <p class="standfirst">What to buy, what to postpone, and what not to buy at all &mdash; sequenced against the gates so the spending only ever follows evidence.</p>
+    <div class="meta">
+      <span><b>Prepared for</b> Aristeidis</span>
+      <span><b>Date</b> 15 August 2026</span>
+      <span><b>Committed so far</b> &pound;0</span>
+    </div>
+  </header>
+
+  <div class="summary">
+    <h2>The rule</h2>
+    <p><strong>Every subscription is bought at the gate that needs it, monthly, never annually.</strong> You asked to know whether this works before committing real money &mdash; a tool stack bought up front quietly converts that question into a sunk cost you will then feel obliged to justify.</p>
+    <p>The good news: <strong>Gate 0 costs nothing.</strong> You already own everything it needs. The first real money is roughly <strong>$150</strong>, and it arrives only after you have heard your own script read aloud in Greek and decided it is worth continuing.</p>
+    <p>The whole first year, at a sustained four videos a month, lands near <strong>$1,300&ndash;1,700</strong> &mdash; and every part of it is cancellable monthly.</p>
+  </div>
+
+  <section>
+    <p class="part-label">Phase one</p>
+    <h2>Buy now: nothing</h2>
+
+    <div class="phase">
+      <span class="phase-when">Gate 0 &middot; this week</span>
+      <span class="phase-cost">$0</span>
+    </div>
+
+    <p>Gate 0 is one bilingual script and a narration test. Everything it requires, you have.</p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Verify current pricing before any purchase &mdash; these move.</caption>
+        <thead><tr><th>Tool</th><th>Why</th><th>Cost</th></tr></thead>
+        <tbody>
+          <tr><td class="item">Claude</td><td>Orchestration, scripts, the Greek editor pass. Your existing plan is fine until you hit limits.</td><td class="num free">have it</td></tr>
+          <tr><td class="item">GitHub</td><td>Private repos are free. Already set up.</td><td class="num free">$0</td></tr>
+          <tr><td class="item">Figma</td><td>You already hold a Pro seat on your own team. Identity file is built.</td><td class="num free">have it</td></tr>
+          <tr><td class="item">ElevenLabs</td><td>Free tier covers a two-language narration test comfortably. No commercial licence, but Gate 0 publishes nothing.</td><td class="num free">$0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="verdict good">
+      <span class="verdict-tag">The point</span>
+      <p>You can answer the single most disqualifying question in this project &mdash; does the Greek sound right to a native ear &mdash; for nothing, this week. No other spend makes sense before that answer exists.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="part-label">Phase two</p>
+    <h2>Buy at Gate 1: the pilots</h2>
+
+    <div class="phase">
+      <span class="phase-when">Weeks 2&ndash;6</span>
+      <span class="phase-cost">~$150 once + $37/mo</span>
+    </div>
+
+    <p>Only once Gate 0 passes. This is the money that buys you three finished videos and a real answer on cost per episode.</p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>fal.ai is credits, not a subscription &mdash; buy $150 and it lasts until spent. Credits expire after 365 days.</caption>
+        <thead><tr><th>Tool</th><th>Why</th><th>Cost</th></tr></thead>
+        <tbody>
+          <tr><td class="item">fal.ai credits</td><td>Image and video generation for all three pilots, including the deliberately expensive Pilot B comparison</td><td class="num">~$150 once</td></tr>
+          <tr><td class="item">ElevenLabs Creator</td><td>Upgrade needed for the commercial licence the moment you publish anything</td><td class="num">$22/mo</td></tr>
+          <tr><td class="item">Music library</td><td>Six cleared cues. Epidemic Sound or Artlist. <strong>Not</strong> AI-generated music &mdash; see below.</td><td class="num">~$15/mo</td></tr>
+          <tr><td class="item">Google Cloud</td><td>YouTube Data API project for programmatic upload. Free tier is ample.</td><td class="num free">$0</td></tr>
+          <tr class="total-row"><td>Gate 1 total</td><td>Three pilots, fully finished</td><td class="num">~$225</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <p class="part-label">Phase three</p>
+    <h2>Buy at Gate 2: sustaining</h2>
+
+    <div class="phase">
+      <span class="phase-when">Months 2&ndash;4</span>
+      <span class="phase-cost">~$95&ndash;135/mo</span>
+    </div>
+
+    <p>Ten to twelve videos on a steady cadence. The only change from Gate 1 is topping up fal.ai as you actually consume it, at roughly $15&ndash;25 per finished video in storybook-motion style.</p>
+
+    <p>One possible addition: if you find yourself blocked by Claude usage limits while running the pipeline, that is the moment to move up a plan &mdash; not before. Upgrading in anticipation of a bottleneck you have not hit is exactly the pattern this document exists to prevent.</p>
+  </section>
+
+  <section>
+    <p class="part-label">Phase four</p>
+    <h2>When your wife joins</h2>
+
+    <p>Worth being precise here, because the instinct is to buy her a seat on everything. <strong>She needs almost none of the production stack.</strong> Sales and marketing sits downstream of the pipeline, not inside it.</p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Distribution and production barely overlap. Buy seats for what someone actually touches.</caption>
+        <thead><tr><th>Need</th><th>Tool</th><th>Cost</th></tr></thead>
+        <tbody>
+          <tr><td class="item">Shared credentials</td><td>1Password or similar. The first genuine requirement of a second person.</td><td class="num">~$5/mo</td></tr>
+          <tr><td class="item">Work tracking</td><td>GitHub Projects &mdash; free, already in the repo, and issues link to the commits that resolve them</td><td class="num free">$0</td></tr>
+          <tr><td class="item">Analytics</td><td>YouTube Studio. Genuinely good, and free.</td><td class="num free">$0</td></tr>
+          <tr><td class="item">Figma</td><td>Viewer seats are free. She can comment on thumbnails without a paid seat.</td><td class="num free">$0</td></tr>
+          <tr><td class="item">Social scheduling</td><td>Only once there is a posting cadence worth automating. Not before.</td><td class="num">defer</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="verdict good">
+      <span class="verdict-tag">On coherence</span>
+      <p>What makes this joinable is not tooling &mdash; it is that the repo already holds the style bible, the prompt kit, the character spec and the gates. Someone can read those and know what the thing is, what it must never do, and what would make you stop. That is worth more than any project-management subscription, and you already have it.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="part-label">Part five</p>
+    <h2>Do not buy</h2>
+
+    <ul class="no-list">
+      <li>
+        <span class="no-tag">No</span>
+        <div><strong>JIRA.</strong> You named it, so let me argue properly. JIRA is built for engineering teams coordinating sprints across dependencies. Your unit of work is an episode moving through a fixed eight-beat pipeline &mdash; already described in the style bible, already tracked by files on disk. The cost is not the licence, it is the ceremony: boards, workflows and ticket hygiene that consume hours you do not have at a headcount of one. GitHub Issues plus Projects is free, lives beside the code, and will hold until you are three or more people. Your familiarity with Atlassian from work is real, but familiarity with a tool is not the same as it being right at this scale.</div>
+      </li>
+      <li>
+        <span class="no-tag">No</span>
+        <div><strong>Suno or any AI music generator.</strong> Two independent reasons. The free tier grants no commercial rights at all, and fully AI-generated audio is not eligible for Content&nbsp;ID, so you could never protect a cue you liked. Layered on top is unresolved label litigation. A licensed library costs $15/month and removes the entire category of risk.</div>
+      </li>
+      <li>
+        <span class="no-tag">No</span>
+        <div><strong>Adobe Creative Cloud, Canva Pro, or a video editor subscription.</strong> Assembly is ffmpeg driven by Claude Code, and everything compositable is a Figma component. Buy an editor only if you find yourself fighting ffmpeg for hours &mdash; and note that would itself be a finding worth acting on.</div>
+      </li>
+      <li>
+        <span class="no-tag later">Later</span>
+        <div><strong>A domain and channel name.</strong> The name is deliberately deferred until after Gate 1. Buying a domain now anchors you to a name chosen before you had seen any finished video.</div>
+      </li>
+      <li>
+        <span class="no-tag later">Later</span>
+        <div><strong>A company, business bank account or accountant.</strong> Premature until there is revenue or a second person taking equity. Revisit at Gate 3.</div>
+      </li>
+      <li>
+        <span class="no-tag later">Later</span>
+        <div><strong>Annual billing on anything.</strong> The discount is real and it is a trap here. Monthly billing is what keeps the kill criteria honest.</div>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="part-label">Part six</p>
+    <h2>Things you did not ask about, and need</h2>
+
+    <h3>1. A dedicated Google account &mdash; do this first</h3>
+    <p>Not your work account, and not your main personal one. The channel, the Google Cloud project, the OAuth credentials and the API quota all hang off a single Google identity, and disentangling that later is genuinely painful. Create it before the channel exists. When your wife joins, YouTube Brand Account permissions let you grant her access without ever sharing a password.</p>
+
+    <div class="verdict hard">
+      <span class="verdict-tag">Do not skip</span>
+      <p>A channel created under your CEPR work account is a channel your employer has a plausible claim to look at, and one you could lose access to if you changed jobs. Ten free minutes now.</p>
+    </div>
+
+    <h3>2. Somewhere for the generated assets to live</h3>
+    <p>Frames, clips and renders are deliberately excluded from git &mdash; they are large and reproducible. But "reproducible" means paying fal.ai again, so treat them as worth keeping. A single external SSD covers the pilot phase for a one-off cost; cloud object storage runs a few dollars a month per terabyte if you would rather not think about it. Either is fine. Having neither is how you lose Pilot A.</p>
+
+    <h3>3. A channel email address</h3>
+    <p>Comes free with the dedicated Google account, and is what goes in the channel's About page for licensing and brand enquiries. Which, per the brief, is where the actual money is more likely to come from than advertising.</p>
+  </section>
+
+  <section>
+    <p class="part-label">Part seven</p>
+    <h2>What the year costs</h2>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Assumes storybook-motion style at four videos a month. Full AI animation roughly triples the generation line.</caption>
+        <thead><tr><th>Scenario</th><th>What happens</th><th>Total</th></tr></thead>
+        <tbody>
+          <tr><td class="item">Stops at Gate 0</td><td>The Greek does not land, or the script bores you. You learn this in week one.</td><td class="num free">$0</td></tr>
+          <tr><td class="item">Stops at Gate 1</td><td>Three finished pilots exist. You know your true cost and hours per video.</td><td class="num">~$225</td></tr>
+          <tr><td class="item">Stops at Gate 2</td><td>Twelve videos published, no traction. Roughly four months in.</td><td class="num">~$600</td></tr>
+          <tr class="total-row"><td>Runs the full year</td><td>~48 videos, a real catalogue, a genuine answer</td><td class="num">~$1,300&ndash;1,700</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The shape that matters: <strong>the cheapest outcomes are the ones where you stop early</strong>, and the gates are designed to make stopping early easy and unembarrassing. You asked whether this works. That is a question with a $225 answer, not a $4,500 one.</p>
+  </section>
+
+  <section>
+    <p class="part-label">This week</p>
+    <h2>Four things, none of which cost money</h2>
+    <ol>
+      <li><strong>Create the dedicated Google account.</strong> Ten minutes, and everything else hangs off it.</li>
+      <li><strong>Pick three fables and one Greek folk tale.</strong> Your enjoyment is a real input; you will read these a hundred times.</li>
+      <li><strong>Run Gate 0.</strong> I write the bilingual retelling, we generate narration in both languages, you listen.</li>
+      <li><strong>Decide the host's name.</strong> The character spec is locked and waiting on it.</li>
+    </ol>
+    <p>Then, and only then, spend the $150.</p>
+  </section>
+
+  <p class="colophon">
+    Companion to the Paramythia Brief &middot; 15 August 2026<br>
+    Prices are indicative and move frequently &mdash; verify each before purchase.<br>
+    Nothing in this document has been bought.
+  </p>
+
+</div>
