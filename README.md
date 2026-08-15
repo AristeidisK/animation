@@ -17,7 +17,7 @@ Gate 1 — see the brief.
 | `brand/style-bible.md` | The base every story inherits — direction, tone, episode architecture, cohesion checklist |
 | `brand/tokens.json` | Source of truth for colour, type, scene keys, depth planes |
 | `brand/prompt-kit.md` | Exact prompt blocks for image generation, plus retry diagnosis |
-| `brand/characters/yiayia.md` | The host character, specced for drift resistance |
+| `brand/characters/owl.md` | The host character, specced for drift resistance |
 
 Figma identity file: https://www.figma.com/design/UE7NV9tT3aSLXojGOHFUjC
 
@@ -27,7 +27,7 @@ Figma identity file: https://www.figma.com/design/UE7NV9tT3aSLXojGOHFUjC
 
 Flat vector shapes on separate depth planes, Bluey-adjacent in construction but
 not in ambition. Every scene keyed to one of six expressive colour moods rather
-than naturalistic light. A recurring grandmother narrator bookends every episode
+than naturalistic light. A recurring owl narrator — Athena's bird — bookends every episode
 and is the strongest cohesion device in the system. English and Greek ship as two
 audio tracks on one video via YouTube's multi-language audio feature, so a single
 asset serves both markets.
@@ -63,7 +63,7 @@ Pre-pilot. Gate 0 not yet run.
 - [x] Figma foundations: variables, type styles, Colour and Type pages
 - [x] Title Card and Thumbnail components
 - [ ] End Card, Lower Third components
-- [ ] Yiayiá model sheet (blocked on character art from Gate 0)
+- [ ] Owl model sheet (blocked on character art from episode 001)
 - [ ] Six licensed music cues
 - [ ] Host's name
 - [ ] **Gate 0** — bilingual script + narration test, ~$0

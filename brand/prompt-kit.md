@@ -144,7 +144,7 @@ Do not reroll blindly — it burns budget and rarely converges. Diagnose first.
 | Looks 3D or plasticky | Negative prompt dropped | Re-append negative block |
 | Flat, no depth | Plane brief omitted | Add plane brief, insist on the cropped foreground |
 | Colours drifting off-key | Scene key paraphrased | Paste key fragment with hex values intact |
-| Host looks wrong | Character block paraphrased | Restore from `characters/yiayia.md` verbatim |
+| Host looks wrong | Character block paraphrased | Restore from `characters/owl.md` verbatim |
 | Host blends into scene | Plum appears elsewhere | Change scene key, or remove the competing plum |
 | Face too detailed | Model defaulting to realism | Strengthen negative: `detailed faces, nostrils` |
 

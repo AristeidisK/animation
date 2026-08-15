@@ -8,7 +8,7 @@ episode 40 will not look like a sibling of episode 1.
 |---|---|
 | `tokens.json` | Colour, type, scene keys, depth planes, formats. **Source of truth.** |
 | `prompt-kit.md` | Exact text blocks injected into every image prompt |
-| `characters/yiayia.md` | The host — locked spec |
+| `characters/owl.md` | The host — locked spec |
 | this file | Direction, tone, episode architecture, the cohesion checklist |
 | [Figma file](https://www.figma.com/design/UE7NV9tT3aSLXojGOHFUjC) | Identity, components, title cards, thumbnails — mirrors `tokens.json` |
 
@@ -46,7 +46,7 @@ why it travels, not a tax on travelling.
 
 So: **be specifically Greek, and specifically British, and never generically
 Mediterranean or generically European.** Real cypress, real dry stone walls,
-real Queen Anne's lace, a real bríki on a real gas ring. Name the village. The
+real Queen Anne's lace, a real briki on a real gas ring. Name the village. The
 diaspora parent who recognises it is exactly the viewer worth having, and the
 English child who doesn't recognise it still reads a world with conviction in it.
 
