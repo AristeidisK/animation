@@ -143,3 +143,77 @@ She likes the story and assumes you will too. The register a good grandparent
 uses when they are about to tell you something they find funny.
 
 She asks the question at the end and does not answer it.
+
+---
+
+## 10. Reference prompt — preschool-animation idiom
+
+**Purpose:** exploration and reference only. Kouki ships as a drawn vector asset
+(`pipeline/build_cast.py::kouki`) because generated characters proved unreliable
+— a different bird in every shot, twice in one frame. Use this to explore looks,
+brief a human illustrator, or sanity-check the design. Never for production frames.
+
+**Do not name the reference show in the prompt.** Named properties push models
+toward derivative output you could not safely publish, and described attributes
+steer better anyway. Everything that makes the idiom recognisable is a describable
+quality, and they are all listed below.
+
+### Full prompt
+
+```
+A stylised owl character for a modern preschool animated television series.
+Flat 2D vector illustration with no outlines whatsoever — every shape reads by
+colour contrast alone.
+
+Construction: built from simple geometry. A rounded dome body, wider at the
+base, tapering to two short blunt ear tufts. A soft off-white chest oval
+covering the lower half. Two oversized circular eyes taking up roughly a third
+of the head width, each with a small solid dark pupil and one bright catchlight.
+Two short dark eyebrow strokes above the eyes carrying the entire expression. A
+small downward triangular beak. No mouth, no individual feathers, no visible
+legs beyond two small feet. Two heads tall, chunky and rounded, never realistic.
+
+Colour: deep muted purple body (#6B4A78), warm off-white chest (#F7F1E4),
+golden-yellow eye discs (#F2B33D), soft dark charcoal pupils and brows
+(#23212B), warm terracotta beak (#D0603C). She is the only purple object in
+frame.
+
+Shading: flat two-tone only — one base colour plus a single darker flat shadow
+shape along one side. Absolutely no gradients, no soft shading, no texture, no
+grain, no rendering.
+
+Pose: perched three-quarter on a simple olive-green branch, both eyes to camera,
+brows level and calm. Warm, dry, faintly amused — a storyteller, not a mascot.
+
+Clean flat background. Confident negative space. Bright, warm and legible at
+small size.
+```
+
+### Compact prompt — for models capped near 1000 characters
+
+```
+A stylised owl for a preschool animated series. Flat 2D vector, no outlines, shapes read by colour contrast alone. Rounded dome body wider at the base, two short blunt ear tufts, soft off-white chest oval. Two oversized circular eyes about a third of the head width, small dark pupils, one catchlight each, two short dark eyebrow strokes above. Small triangular beak, no mouth, no feathers, no visible legs. Two heads tall, chunky and rounded. Deep muted purple body #6B4A78, off-white chest #F7F1E4, golden eye discs #F2B33D, charcoal pupils and brows #23212B, terracotta beak #D0603C. Flat two-tone shading only — one base colour plus a single darker flat shadow shape. No gradients, no texture, no rendering. Perched three-quarter on an olive branch, eyes to camera, brows level. Warm, dry, faintly amused. Clean flat background.
+```
+
+### Negative prompt
+
+```
+outlines, line art, black outlines, cross-hatching, sketch, watercolour, oil
+painting, brush texture, paper grain, film grain, noise, gradients, soft
+shading, cel shading with rim light, ambient occlusion, specular highlights,
+depth of field, bokeh, blur, 3D render, CGI, Pixar style, photorealism,
+photograph, realistic feathers, detailed plumage, sharp talons, open beak,
+angry expression, dark or gothic mood, text, watermark, signature, pure black,
+pure white
+```
+
+### If the output is wrong
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| Realistic owl | "stylised" and "preschool" dropped | Restore both; add `detailed plumage` to negatives |
+| Outlines appear | Model default | Repeat "no outlines" in the pose sentence too |
+| Eyes too small | Not stated as a proportion | Insist on "a third of the head width" |
+| Looks menacing | Owls default to nocturnal-predator | Add "brows level", "warm", "friendly", "daylight" |
+| Wrong purple | Hexes ignored | Most models ignore hex codes — say "deep muted purple, dusty, not violet" |
+| Extra birds | Count not stated | Add "a single owl, one character only" |
