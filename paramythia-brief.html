@@ -1,0 +1,897 @@
+<title>The Paramythia Brief</title>
+<style>
+  :root {
+    --paper:      #FAF9F6;
+    --surface:    #F1EFE9;
+    --surface-2:  #E6E3DA;
+    --ink:        #191C22;
+    --ink-2:      #4A4F5C;
+    --ink-3:      #767C8B;
+    --rule:       #D9D5CB;
+    --rule-soft:  #E6E3DA;
+    --indigo:     #2C3A63;
+    --ochre:      #A9641F;
+    --olive:      #4E6B44;
+    --rust:       #97362B;
+
+    --display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --body: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+    --measure: 68ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #131519;
+      --surface:    #1B1E25;
+      --surface-2:  #252932;
+      --ink:        #EEEBE4;
+      --ink-2:      #B2B6C0;
+      --ink-3:      #7E8492;
+      --rule:       #2E333D;
+      --rule-soft:  #23272F;
+      --indigo:     #94A9DD;
+      --ochre:      #DFA05C;
+      --olive:      #93B683;
+      --rust:       #E48375;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:      #131519;
+    --surface:    #1B1E25;
+    --surface-2:  #252932;
+    --ink:        #EEEBE4;
+    --ink-2:      #B2B6C0;
+    --ink-3:      #7E8492;
+    --rule:       #2E333D;
+    --rule-soft:  #23272F;
+    --indigo:     #94A9DD;
+    --ochre:      #DFA05C;
+    --olive:      #93B683;
+    --rust:       #E48375;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 0 24px 140px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    padding: 72px 0 40px;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ochre);
+    margin: 0;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(38px, 8vw, 58px);
+    line-height: 1.04;
+    font-weight: 400;
+    margin: 0;
+    text-wrap: balance;
+    letter-spacing: -0.015em;
+  }
+
+  .standfirst {
+    font-family: var(--display);
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin: 0;
+    max-width: 56ch;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-3);
+    letter-spacing: 0.03em;
+    padding-top: 6px;
+  }
+
+  .meta b { color: var(--ink-2); font-weight: 500; }
+
+  /* ---------- sections ---------- */
+
+  section {
+    padding-top: 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .part-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .part-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: clamp(27px, 5vw, 34px);
+    line-height: 1.15;
+    font-weight: 400;
+    margin: 0;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-family: var(--body);
+    font-size: 16px;
+    font-weight: 650;
+    line-height: 1.35;
+    margin: 20px 0 -6px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+
+  h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 500;
+    margin: 12px 0 -8px;
+  }
+
+  p { margin: 0; }
+
+  a { color: var(--indigo); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--ochre); outline-offset: 3px; border-radius: 2px; }
+
+  strong { font-weight: 650; }
+
+  ul, ol { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 9px; }
+  li { padding-left: 2px; }
+  li::marker { color: var(--ink-3); }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.855em;
+    background: var(--surface);
+    border: 1px solid var(--rule-soft);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* ---------- verdict callouts ---------- */
+
+  .verdict {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 18px 20px;
+    background: var(--surface);
+    border-left: 3px solid var(--ink-3);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .verdict.hard  { border-left-color: var(--rust); }
+  .verdict.care  { border-left-color: var(--ochre); }
+  .verdict.good  { border-left-color: var(--olive); }
+
+  .verdict-tag {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-3);
+  }
+  .verdict.hard .verdict-tag { color: var(--rust); }
+  .verdict.care .verdict-tag { color: var(--ochre); }
+  .verdict.good .verdict-tag { color: var(--olive); }
+
+  .verdict p { font-size: 16px; line-height: 1.6; }
+
+  /* ---------- summary block ---------- */
+
+  .summary {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: 26px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 44px;
+  }
+
+  .summary h2 {
+    font-size: 22px;
+    font-family: var(--body);
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+
+  .findings {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    counter-reset: finding;
+  }
+
+  .findings li {
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    gap: 12px;
+    padding: 0;
+    counter-increment: finding;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .findings li::before {
+    content: counter(finding, decimal-leading-zero);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ochre);
+    letter-spacing: 0.05em;
+    padding-top: 5px;
+  }
+
+  /* ---------- tables ---------- */
+
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    background: var(--surface);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+    min-width: 520px;
+  }
+
+  caption {
+    caption-side: bottom;
+    text-align: left;
+    font-size: 13px;
+    color: var(--ink-3);
+    padding: 10px 16px 0;
+    line-height: 1.5;
+  }
+
+  th {
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-3);
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--rule);
+    white-space: nowrap;
+    vertical-align: bottom;
+  }
+
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+
+  .num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 13.5px; }
+  .role { font-weight: 600; white-space: nowrap; }
+  .total-row td { background: var(--surface-2); font-weight: 650; }
+  .total-row .num { font-weight: 650; }
+
+  /* ---------- gates ---------- */
+
+  .gates {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 2px solid var(--rule);
+    margin-left: 7px;
+  }
+
+  .gate {
+    position: relative;
+    padding: 0 0 30px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .gate:last-child { padding-bottom: 4px; }
+
+  .gate::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 7px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--indigo);
+  }
+
+  .gate-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .gate-no {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--indigo);
+    font-weight: 500;
+  }
+
+  .gate-title { font-weight: 650; font-size: 16.5px; }
+
+  .gate-cost {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .kill {
+    font-size: 14.5px;
+    color: var(--ink-2);
+    padding: 9px 13px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-left: 2px solid var(--rust);
+  }
+
+  .kill b { color: var(--rust); font-weight: 600; letter-spacing: 0.02em; }
+
+  /* ---------- style comparison ---------- */
+
+  .versus {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 720px) {
+    .versus { grid-template-columns: 1fr 1fr; }
+  }
+
+  .option {
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    background: var(--surface);
+  }
+
+  .option.pick { border-color: var(--olive); border-width: 1.5px; }
+
+  .option-name {
+    font-family: var(--display);
+    font-size: 21px;
+    line-height: 1.2;
+  }
+
+  .chip {
+    align-self: flex-start;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: var(--surface-2);
+    color: var(--ink-3);
+  }
+
+  .option.pick .chip { background: var(--olive); color: var(--paper); }
+
+  .option ul { font-size: 14.5px; gap: 7px; }
+  .option p { font-size: 14.5px; color: var(--ink-2); }
+
+  .price {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+    padding-top: 4px;
+    border-top: 1px solid var(--rule-soft);
+    margin-top: auto;
+  }
+
+  .price span { color: var(--ink-3); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 2px; }
+
+  /* ---------- pilots ---------- */
+
+  .pilot {
+    border-top: 1px solid var(--rule);
+    padding-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pilot-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
+
+  .pilot-id {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ochre);
+  }
+
+  .pilot-title { font-family: var(--display); font-size: 21px; }
+
+  .spec {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 6px 18px;
+    font-size: 14.5px;
+    align-items: baseline;
+  }
+
+  .spec dt {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    padding-top: 3px;
+  }
+
+  .spec dd { margin: 0; color: var(--ink-2); }
+  .spec dd b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- footer ---------- */
+
+  .sources {
+    padding-top: 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sources ul { font-size: 14px; gap: 6px; }
+  .sources a { color: var(--ink-2); }
+
+  .colophon {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+
+  .greek { font-family: var(--display); font-style: italic; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .masthead, section { animation: rise 0.5s ease-out both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">Feasibility investigation &middot; working codename</p>
+    <h1>The Paramythia Brief</h1>
+    <p class="standfirst">Can a bilingual Greek&ndash;English children&rsquo;s folk tale channel be built with AI tooling, hit a quality bar you&rsquo;d actually show your daughters, and pay for itself inside twelve months?</p>
+    <div class="meta">
+      <span><b>Prepared for</b> Aristeidis</span>
+      <span><b>Date</b> 15 August 2026</span>
+      <span><b>Status</b> Pre-pilot</span>
+      <span><b>Decision</b> Gate&nbsp;0 &mdash; approx. &pound;0</span>
+    </div>
+  </header>
+
+  <div class="summary">
+    <h2>The short version</h2>
+    <ul class="findings">
+      <li><b>Ad revenue will not repay this in year one.</b> &ldquo;Made for Kids&rdquo; content earns roughly $1&ndash;3 RPM against $5&ndash;15 for general audiences, and loses comments, memberships, Super Thanks, end screens and personalised ads. At $2 RPM you need ~1.8&nbsp;million views a year just to cover $300/month. Plan the experiment so it never depends on that.</li>
+      <li><b>The full-automation dream is now specifically targeted by policy.</b> YouTube&rsquo;s inauthentic-content rules run at channel level as of 2026, and sixteen channels holding 4.7&nbsp;billion views were removed from the Partner Programme in January. Hand-finishing is not a quality preference here &mdash; it is the compliance moat.</li>
+      <li><b>Lead with the tales, not the songs.</b> Aesop and folk tales are narrated, which is the single thing this toolchain does well and cheaply. Songs need melody, singing, mouth-sync and beat-matched motion &mdash; the four things it does worst &mdash; in the most saturated niche on the platform.</li>
+      <li><b>The Greek half is the actual business.</b> English nursery rhymes are a bloodbath. Greek-language children&rsquo;s content for diaspora families is close to open field, aimed at parents who are motivated, findable, and already spending money to keep the language alive in their kids.</li>
+      <li><b>Storybook-motion beats full AI video on every axis that matters to you.</b> Roughly $15&ndash;25 per finished video against $50&ndash;130, more consistent characters, and it reads as a deliberate style rather than as melting AI footage. Pilot both, but I expect this to win.</li>
+      <li><b>Test the story before you test the animation.</b> Narration plus a still frame costs almost nothing and tells you whether your scripts and Greek voice work. Do that in week one, before a penny goes to video generation.</li>
+    </ul>
+  </div>
+
+  <section>
+    <p class="part-label">Part one</p>
+    <h2>Four constraints that shape everything else</h2>
+    <p>These came out of the research, not from theory. Each one closes off a plausible plan, so it is worth knowing them before you spend anything.</p>
+
+    <h3>1. The &ldquo;Made for Kids&rdquo; flag is a revenue amputation</h3>
+    <p>Your content is unambiguously made for kids, so you must set that flag &mdash; it is a legal requirement under COPPA, not a strategic choice. Setting it removes personalised ads, comments, the notification bell, end screens, cards, channel memberships, Super Thanks and Super Chat. What remains is contextual advertising at roughly $1&ndash;3 RPM.</p>
+
+    <div class="verdict hard">
+      <span class="verdict-tag">Hard constraint</span>
+      <p>Every 10,000 views earns you about $20. A pilot video that does a respectable 5,000 views earns $10. Ad revenue cannot fund this experiment at any realistic early scale, so the experiment has to be cheap enough not to need it.</p>
+    </div>
+
+    <h3>2. YouTube is actively hunting the pipeline you described</h3>
+    <p>In July 2025 YouTube renamed its &ldquo;repetitious content&rdquo; policy to <b>inauthentic content</b>, covering material that looks templated with little variation between videos, or that is easily replicable at scale. Through 2026 detection moved to the channel level. The policy explicitly does <em>not</em> ban AI tools &mdash; using AI inside a genuinely original production with a real script and real editorial decisions stays eligible. What gets killed is the fully automated, template-stamped feed.</p>
+    <p>Separately, YouTube limits AI-generated content in the YouTube Kids app to a small set of high-quality channels, and in March 2026 more than 200 children&rsquo;s specialists and advocacy groups petitioned Google to restrict AI kids&rsquo; content further. Regulatory pressure here is rising, not falling.</p>
+
+    <div class="verdict care">
+      <span class="verdict-tag">Design implication</span>
+      <p>This kills &ldquo;near-full automation&rdquo; as a target state and answers your craft-level question for you. Build the pipeline, but keep a human editorial pass on script, shot selection and final cut on every single video. That pass is also what makes the channel defensible if a reviewer ever looks at it.</p>
+    </div>
+
+    <h3>3. The English nursery-rhyme niche is unwinnable from a standing start</h3>
+    <p>Cocomelon sits at roughly 160&nbsp;million subscribers; ABCkidTV is above 200&nbsp;million; Super Simple Songs counts views in the billions. Every public-domain rhyme you named already has hundreds of versions, precisely <em>because</em> the rights are free &mdash; zero barrier to entry means maximum competition. There is no version of &ldquo;Baa Baa Black Sheep&rdquo; you can produce in month one that outranks theirs.</p>
+
+    <div class="verdict good">
+      <span class="verdict-tag">The opening</span>
+      <p>The same search returns almost nothing for Greek lullabies and rhymes at a comparable production standard. <span class="greek">&laquo;&Nu;ά&nu;&iota; &nu;ά&nu;&iota;&raquo;</span>, <span class="greek">&laquo;&Kappa;&omicron;&iota;&mu;ή&sigma;&omicron;&upsilon; &chi;&alpha;&rho;&alpha;ϊ&delta;ά&kappa;&iota; &mu;&omicron;&upsilon;&raquo;</span> and the rest are just as public domain and effectively uncontested. Same songs list you wanted, different language, completely different competitive picture.</p>
+    </div>
+
+    <h3>4. TikTok is a parent channel, not a kids channel</h3>
+    <p>TikTok&rsquo;s under-13 experience is a walled garden: those users can watch, but the account structure, recommendation surface and monetisation are all built for 13+, and full monetisation requires the creator to be 18+. You cannot meaningfully reach small children there.</p>
+    <p>That is not a reason to skip it &mdash; it is a reason to aim it differently. TikTok and Reels are where you reach <em>Greek diaspora parents</em>, who are the people who will actually subscribe, share and eventually buy. Treat short-form as marketing to adults, and YouTube as delivery to children.</p>
+  </section>
+
+  <section>
+    <p class="part-label">Part two</p>
+    <h2>What I would actually build</h2>
+    <p>You said start with one channel and diversify later. I agree, and I would make the first channel narrower than you were picturing &mdash; not because the wider vision is wrong, but because a narrow channel is the only kind you can prove anything with in three months.</p>
+
+    <h3>The positioning</h3>
+    <p><b>Bilingual folk tales and fables for children aged four to eight, in English and Greek, on a single channel using YouTube&rsquo;s multi-language audio tracks.</b> One video, two audio tracks, one set of thumbnails, one upload. Viewers switch language in the player. Creators using custom multi-language tracks report over 25% of watch time coming from non-primary languages, and the feature has been broadly available since late 2025.</p>
+    <p>This is the key structural decision, and it is why one channel works. You are not choosing between a Greek channel and an English channel &mdash; you are producing one asset that serves both, at roughly the cost of the video plus a second narration pass.</p>
+
+    <h3>Why folk tales rather than songs, in order</h3>
+    <ul>
+      <li><b>Narration is the toolchain&rsquo;s strong suit.</b> A story needs a voice, illustrations and gentle motion. A song needs a composed melody, a convincing child-appropriate vocal, lip movement matched to lyrics, and animation locked to a beat. That is four hard problems stacked, in your first month.</li>
+      <li><b>Tales carry an editorial voice.</b> Your retelling of a fable is genuinely yours, which is exactly what the inauthentic-content policy rewards. A cover of &ldquo;Twinkle Twinkle&rdquo; is definitionally the same as everyone else&rsquo;s.</li>
+      <li><b>You cannot protect an AI song.</b> Fully AI-generated audio is not eligible for Content&nbsp;ID, so a good arrangement can be re-uploaded by anyone with no recourse.</li>
+      <li><b>Suno&rsquo;s free tier grants no commercial rights whatsoever</b>, and its models are subject to ongoing label litigation. Paid tiers do grant a licence, but the ground is moving.</li>
+    </ul>
+    <p>Songs come back in phase two, Greek-first, once the pipeline is proven and you have a house style that a song can inherit.</p>
+
+    <h3>The audience insight worth building on</h3>
+    <div class="verdict good">
+      <span class="verdict-tag">Where the value is</span>
+      <p>Greek diaspora families in the UK, Australia, the US, Germany and Canada are actively trying to keep the language alive in children who go to school in English. They search for this material, they do not find much of quality, and they already pay for books, Saturday schools and language apps. That is a defined, motivated, reachable audience with a demonstrated willingness to spend &mdash; which matters enormously given that $2 RPM makes advertising a rounding error. Your realistic revenue is books, an audio subscription, or licensing. Ads are the byproduct, not the plan.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="part-label">Part three</p>
+    <h2>Two candidate looks, and which I expect to win</h2>
+    <p>This is the biggest cost variable in the whole project, and it is genuinely uncertain, which is exactly why it should be your first real experiment.</p>
+
+    <div class="versus">
+      <div class="option pick">
+        <span class="chip">Recommended</span>
+        <p class="option-name">Storybook motion</p>
+        <p>High-quality illustrated key frames with parallax camera moves, selective animation on one or two elements per shot, and generous hold time on beautiful stills.</p>
+        <ul>
+          <li>Characters stay on-model, because most frames are stills you approved</li>
+          <li>Reads as a deliberate aesthetic, not as failed realism</li>
+          <li>Retries are cheap &mdash; you regenerate an image, not a clip</li>
+          <li>Matches the material: these <em>are</em> storybook tales</li>
+        </ul>
+        <p class="price"><span>Per 3-min video</span>$15&ndash;25</p>
+      </div>
+
+      <div class="option">
+        <span class="chip">Test anyway</span>
+        <p class="option-name">Full AI animation</p>
+        <p>Every shot generated as video from a reference image, using Kling, Seedance or Veo for continuous character motion throughout.</p>
+        <ul>
+          <li>More alive; better hold on very young attention spans</li>
+          <li>Character drift across shots remains the core difficulty</li>
+          <li>Retry ratios are high, and each retry costs real money</li>
+          <li>Cost scales with runtime, so longer tales get expensive fast</li>
+        </ul>
+        <p class="price"><span>Per 3-min video</span>$50&ndash;130</p>
+      </div>
+    </div>
+
+    <p>At four videos a month, storybook motion lands around $115&ndash;155/month all-in and sits comfortably inside your budget. Full AI animation lands at $250&ndash;570/month and does not. That gap is the finding: the cheaper option is also the one more likely to look intentional, and the one you can afford to iterate on.</p>
+    <p>Run both on the <em>same script</em> in the pilots so the comparison is clean, then commit.</p>
+
+    <h3>Character consistency</h3>
+    <p>Whichever style wins, consistency comes from the same place: build a locked character sheet first. Generate each recurring character as a multi-view turnaround with fixed clothing and palette, save those as reference images, and feed them into every subsequent generation. Current image models accept multiple reference images specifically for this, and it is the difference between a cast and a slideshow of strangers.</p>
+  </section>
+
+  <section>
+    <p class="part-label">Part four</p>
+    <h2>The agent roster</h2>
+    <p>You asked which agent handles which role. Here is the honest version: most of these are Claude subagents with carefully written briefs, a few are API calls, and three are you. The value is not that each one is exotic &mdash; it is that the handoffs between them are structured, so a video moves through the pipeline as data rather than as vibes.</p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Roles marked &ldquo;you&rdquo; are the ones that keep the channel policy-compliant and worth watching. Do not automate them away.</caption>
+        <thead>
+          <tr><th>Role</th><th>Owns</th><th>Runs on</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="role">Showrunner</td><td>Story slate, gate decisions, final yes/no on every cut</td><td><b>You</b>, with Claude as sounding board</td></tr>
+          <tr><td class="role">Adaptation writer</td><td>Public-domain source &rarr; original retelling, beat sheet, target runtime, age-appropriate language</td><td>Claude subagent</td></tr>
+          <tr><td class="role">Greek editor</td><td>Naturalness for a six-year-old; strips the archaic register that public-domain Greek sources are full of</td><td>Claude subagent, then <b>you</b> read it aloud</td></tr>
+          <tr><td class="role">Art director</td><td>Style bible, palette, character sheets, reusable prompt templates</td><td>Claude + image model</td></tr>
+          <tr><td class="role">Storyboarder</td><td>Script &rarr; numbered shot list as structured JSON, one prompt per shot</td><td>Claude subagent, schema-enforced</td></tr>
+          <tr><td class="role">Image generation</td><td>Key frames from shot list against locked character refs</td><td>fal.ai API</td></tr>
+          <tr><td class="role">Motion generation</td><td>Image-to-video for shots that need movement</td><td>fal.ai API</td></tr>
+          <tr><td class="role">Voice</td><td>English and Greek narration; consistent narrator identity across the catalogue</td><td>ElevenLabs API</td></tr>
+          <tr><td class="role">Music &amp; sound</td><td>Beds, stings, ambience</td><td>Licensed library, hand-picked</td></tr>
+          <tr><td class="role">Editor</td><td>Assembly, timing, transitions, subtitle burn-in from the shot JSON</td><td>ffmpeg, driven by Claude Code</td></tr>
+          <tr><td class="role">QC</td><td>Continuity, Greek spelling, garbled on-screen text, audio sync, age-appropriateness, anything frightening</td><td>Claude subagent + <b>your eyes</b></td></tr>
+          <tr><td class="role">Packaging</td><td>Titles, descriptions, tags, chapter markers, thumbnail spec</td><td>Claude subagent &rarr; Figma</td></tr>
+          <tr><td class="role">Publisher</td><td>Upload, Made-for-Kids flag, synthetic-content disclosure, second audio track</td><td>YouTube Data API v3</td></tr>
+          <tr><td class="role">Analyst</td><td>Retention curves, CTR, which tales hold attention past thirty seconds</td><td>Claude + YouTube Analytics API</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>A note on the plumbing</h4>
+    <p>Claude Code is a genuinely good fit as the orchestrator here, because the whole pipeline is files and API calls: JSON shot lists, generated assets on disk, an ffmpeg assembly step, an upload call. That is ordinary software, and it is the part of this project least likely to surprise you. The <code>videos.insert</code> quota moved to a dedicated bucket of roughly 100 uploads a day in June 2026, so publishing volume will never be your bottleneck.</p>
+    <p>Build it as a repo with one directory per episode and a manifest file that every stage reads and writes. Resumability matters more than elegance &mdash; you will re-run stage four forty times.</p>
+  </section>
+
+  <section>
+    <p class="part-label">Part five</p>
+    <h2>Where Figma actually fits</h2>
+    <p>Figma is the right tool for this project and the wrong tool for the thing you might be imagining. It will not animate your videos. What it should own is everything <em>around</em> the frame &mdash; and that turns out to be most of what makes a channel look like a channel:</p>
+    <ul>
+      <li><b>Identity</b> &mdash; wordmark, avatar, channel banner, the small mark that appears on every title card</li>
+      <li><b>The token system</b> &mdash; a named palette and type scale that the art director agent quotes verbatim in every image prompt, so visual consistency is enforced by a document rather than by memory</li>
+      <li><b>Title cards, name plates and end cards</b> as reusable components, exported as transparent PNGs for the editor to composite</li>
+      <li><b>Thumbnail templates</b> &mdash; the highest-leverage thing on this list. Thumbnails drive CTR, CTR drives everything else, and a template means you produce a good one in two minutes instead of thirty</li>
+      <li><b>The character model sheet</b> as a reference board, so every generation starts from the same locked appearance</li>
+    </ul>
+    <p>Figma&rsquo;s MCP server is already connected in this session, so I can create and edit these files directly once you have decided on a direction.</p>
+  </section>
+
+  <section>
+    <p class="part-label">Part six</p>
+    <h2>Money</h2>
+    <p>You were right to push back on $300 a month. Here is what it actually costs, and it is less than that until you choose to scale.</p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Fixed monthly tooling. Figma&rsquo;s free tier is sufficient for a single designer. fal.ai is pay-as-you-go credits, not a subscription.</caption>
+        <thead><tr><th>Item</th><th>Purpose</th><th>Monthly</th></tr></thead>
+        <tbody>
+          <tr><td class="role">ElevenLabs Creator</td><td>English + Greek narration</td><td class="num">$22</td></tr>
+          <tr><td class="role">Music library</td><td>Cleared beds and ambience</td><td class="num">$12&ndash;15</td></tr>
+          <tr><td class="role">Figma</td><td>Identity, thumbnails, title cards</td><td class="num">$0</td></tr>
+          <tr><td class="role">Claude Code</td><td>Orchestration</td><td class="num">already yours</td></tr>
+          <tr class="total-row"><td>Fixed baseline</td><td>Before a single frame is generated</td><td class="num">$34&ndash;37</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Per-video generation cost, storybook-motion style, three-minute runtime. Retry ratios are the dominant variable and are already built into these ranges.</caption>
+        <thead><tr><th>Stage</th><th>Volume</th><th>Cost</th></tr></thead>
+        <tbody>
+          <tr><td class="role">Key frames</td><td>24&ndash;30 finals, ~3&times; retries</td><td class="num">$4&ndash;12</td></tr>
+          <tr><td class="role">Selective motion</td><td>~60s generated, ~2.5&times; retries</td><td class="num">$8&ndash;11</td></tr>
+          <tr><td class="role">Narration &times;2</td><td>~6 min total audio</td><td class="num">within plan</td></tr>
+          <tr><td class="role">Music</td><td>1&ndash;2 tracks</td><td class="num">within plan</td></tr>
+          <tr class="total-row"><td>Per finished video</td><td>3 minutes, two languages</td><td class="num">$15&ndash;25</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>The twelve-month picture</h3>
+    <p>At four videos a month in storybook style, you are looking at roughly <b>$95&ndash;135 a month</b>, or about <b>$1,200&ndash;1,600 a year</b> &mdash; a third of the figure you were bracing for. The pilot phase costs about <b>$250 total</b>, and you do not commit to the monthly run rate until Gate&nbsp;1 passes.</p>
+
+    <div class="verdict hard">
+      <span class="verdict-tag">Be clear-eyed</span>
+      <p>To break even on $1,400/year at $2 RPM you need roughly 700,000 views a year, or about 58,000 a month. A new channel in a narrow niche will not hit that in year one. If ad revenue is the only definition of success, the honest recommendation is not to start. The reasons to start anyway are that the catalogue is a durable bilingual asset for your own children, that the diaspora audience can be sold to directly, and that the pipeline skill transfers to everything else you might build.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="part-label">Part seven</p>
+    <h2>The three pilots</h2>
+    <p>You wanted to fund two or three videos and see the whole pipe. These are designed so that each one answers a different question, and so that failure is informative rather than just disappointing.</p>
+
+    <div class="pilot">
+      <div class="pilot-head"><span class="pilot-id">Pilot A</span><span class="pilot-title">The Tortoise and the Hare</span></div>
+      <dl class="spec">
+        <dt>Question</dt><dd>Can we hit a quality bar you would show your daughters without wincing?</dd>
+        <dt>Format</dt><dd>2&ndash;3 min, storybook motion, English and Greek audio tracks</dd>
+        <dt>Why this tale</dt><dd>Two characters, one location, a clear arc &mdash; the cheapest possible test of the full pipeline</dd>
+        <dt>Measures</dt><dd><b>True cost</b>, <b>your hours</b>, and the honest gut check</dd>
+        <dt>Budget</dt><dd>~$25</dd>
+      </dl>
+    </div>
+
+    <div class="pilot">
+      <div class="pilot-head"><span class="pilot-id">Pilot B</span><span class="pilot-title">The same fable, fully animated</span></div>
+      <dl class="spec">
+        <dt>Question</dt><dd>Does full AI animation justify three to five times the cost?</dd>
+        <dt>Format</dt><dd>Identical script and shot list, generated as continuous video</dd>
+        <dt>Why identical</dt><dd>Same script means the only variable is the technique, so the comparison is real</dd>
+        <dt>Measures</dt><dd>Side-by-side quality, character drift, retry ratio, cost delta</dd>
+        <dt>Budget</dt><dd>~$100</dd>
+      </dl>
+    </div>
+
+    <div class="pilot">
+      <div class="pilot-head"><span class="pilot-id">Pilot C</span><span class="pilot-title">A Greek folk tale, long form</span></div>
+      <dl class="spec">
+        <dt>Question</dt><dd>Does the winning style survive a longer, culturally specific story?</dd>
+        <dt>Format</dt><dd>5&ndash;6 min in whichever style won, Greek-primary with English track</dd>
+        <dt>Why this one</dt><dd>Tests character consistency across many more scenes, and tests the actual differentiator</dd>
+        <dt>Measures</dt><dd>Consistency at length, cost scaling, Greek narration quality at duration</dd>
+        <dt>Budget</dt><dd>~$60</dd>
+      </dl>
+    </div>
+
+    <p>Cut a 30&ndash;45 second vertical from each for Shorts and TikTok. Near-zero marginal cost, and it tests the parent-facing distribution channel while the main videos are still finding their feet.</p>
+  </section>
+
+  <section>
+    <p class="part-label">Part eight</p>
+    <h2>Rights and compliance</h2>
+    <p>Your instinct on copyright is right, with one significant trap.</p>
+
+    <h4>Safe to use</h4>
+    <ul>
+      <li><b>Aesop</b> &mdash; ancient, and the standard English translations (Jacobs 1894, Townsend) are on Project Gutenberg and long out of copyright</li>
+      <li><b>British and Celtic tales</b> &mdash; Joseph Jacobs, <em>English Fairy Tales</em> (1890) and <em>Celtic Fairy Tales</em> (1892), both public domain</li>
+      <li><b>Nursery rhymes and lullabies</b>, English and Greek &mdash; words and traditional melodies are public domain, as you said</li>
+      <li><b>Greek folk tales</b> from pre-1930 collections &mdash; N.&nbsp;G.&nbsp;Politis, von Hahn&rsquo;s 1864 collection, Geldart&rsquo;s 1884 <em>Folk-Lore of Modern Greece</em></li>
+    </ul>
+
+    <div class="verdict hard">
+      <span class="verdict-tag">The trap</span>
+      <p>Twentieth-century Greek folklore collections &mdash; Megas and essentially every modern retelling &mdash; are still in copyright and will be for decades under EU life-plus-seventy terms. The <em>tale</em> is free; a specific scholar&rsquo;s written version is not. Same for songs: the melody of a lullaby is free, but a particular published arrangement or recording is not. <b>Write your own retellings from the motifs.</b> It is the safest route legally, and it is also what makes the channel original under YouTube&rsquo;s inauthentic-content policy &mdash; the same act solves both problems.</p>
+    </div>
+
+    <h4>Non-negotiable on every upload</h4>
+    <ul>
+      <li>Set <b>Made for Kids</b> &mdash; legal requirement, not a choice</li>
+      <li>Disclose <b>altered or synthetic content</b> in the upload flow</li>
+      <li>Keep a source note per episode recording which public-domain text the retelling derives from</li>
+      <li>Verify the specific edition of any Greek source before using it &mdash; a 1960s reprint of an 1890s collection can carry new editorial copyright</li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="part-label">Part nine</p>
+    <h2>Gates and kill criteria</h2>
+    <p>The point of gates is that you decide the failure condition now, while you are calm, rather than in month eight when you are attached to it.</p>
+
+    <ol class="gates">
+      <li class="gate">
+        <div class="gate-head"><span class="gate-no">Gate 0</span><span class="gate-title">The audio test</span><span class="gate-cost">~$0 &middot; this week</span></div>
+        <p>Write one Aesop retelling in both languages. Generate the narration. Listen to the Greek with your eyes closed. No animation, no spend.</p>
+        <p class="kill"><b>Stop if</b> the Greek narration sounds wrong to a native ear, or the script bores you at ninety seconds. Everything downstream is built on these two things.</p>
+      </li>
+      <li class="gate">
+        <div class="gate-head"><span class="gate-no">Gate 1</span><span class="gate-title">The three pilots</span><span class="gate-cost">~$250 &middot; weeks 2&ndash;6</span></div>
+        <p>All three produced. You now know the true cost per video, the true hours per video, and which style wins.</p>
+        <p class="kill"><b>Stop if</b> you would not show these to your daughters, or if hands-on time exceeds eight hours per video &mdash; at that rate a weekly cadence is a second job with no salary.</p>
+      </li>
+      <li class="gate">
+        <div class="gate-head"><span class="gate-no">Gate 2</span><span class="gate-title">Does anything land?</span><span class="gate-cost">~$400 more &middot; months 2&ndash;4</span></div>
+        <p>Ten to twelve videos published on a steady cadence. Looking at median views, retention past thirty seconds, and whether any single video breaks out.</p>
+        <p class="kill"><b>Stop if</b> no video exceeds 5,000 organic views and retention at thirty seconds stays below 40%. That combination means the format is not working, and more volume will not fix it.</p>
+      </li>
+      <li class="gate">
+        <div class="gate-head"><span class="gate-no">Gate 3</span><span class="gate-title">Is there a business?</span><span class="gate-cost">months 6&ndash;9</span></div>
+        <p>Either a view trajectory heading toward break-even, or a non-ad signal: book pre-orders, a paid audio subscription, a school or licensing enquiry, a diaspora organisation getting in touch.</p>
+        <p class="kill"><b>Continue only if</b> at least one of those exists. Ad revenue alone almost certainly will not clear the bar by this point, and that is expected rather than alarming.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <p class="part-label">Part ten</p>
+    <h2>This week</h2>
+    <ol>
+      <li><b>Pick three fables.</b> Tortoise and Hare, plus two others you actually like. Your enjoyment is a real input &mdash; you will read these a hundred times.</li>
+      <li><b>Pick one Greek folk tale</b> from a pre-1930 source for Pilot&nbsp;C.</li>
+      <li><b>Run Gate 0.</b> I write the bilingual retelling, we generate narration in both languages, you listen. One sitting, no cost.</li>
+      <li><b>Decide the visual world</b> in words before any image is generated &mdash; Aegean light, or northern woodcut, or something else entirely. Everything downstream inherits this.</li>
+      <li><b>Set up the repo</b> so pilots are reproducible rather than one-offs.</li>
+    </ol>
+    <p>Say the word and I will start with the Gate&nbsp;0 script, since it is free and it is the thing most likely to change the plan.</p>
+
+    <h3>Open questions I could not resolve from research</h3>
+    <ul>
+      <li><b>Your Greek register.</b> Standard modern Greek, or does your family have a regional flavour you would want the narrator to carry? This affects the voice choice permanently.</li>
+      <li><b>Do you want to narrate it yourself?</b> A real parent voice is a meaningful differentiator against AI-narrated competitors, and it costs nothing but time.</li>
+      <li><b>How old are your daughters?</b> If they are in the four-to-eight band they are the best test audience you will ever get, and their attention is more reliable data than any analytics dashboard.</li>
+    </ul>
+  </section>
+
+  <section class="sources">
+    <p class="part-label">Sources</p>
+    <ul>
+      <li><a href="https://support.google.com/youtube/answer/1311392?hl=en">YouTube channel monetization policies</a> &mdash; inauthentic content definition</li>
+      <li><a href="https://techcrunch.com/2026/07/20/youtube-clarifies-policies-around-ai-slop-and-upsetting-videos/">TechCrunch: YouTube clarifies policies around AI slop</a></li>
+      <li><a href="https://support.google.com/youtube/answer/10774223?hl=en">YouTube: Best practices for kids &amp; family content</a></li>
+      <li><a href="https://support.google.com/youtube/answer/13338784?hl=en">YouTube: Multi-language audio tracks</a></li>
+      <li><a href="https://vidiq.com/blog/post/make-money-kids-youtube-channel/">vidIQ: Made for Kids monetization in 2026</a></li>
+      <li><a href="https://fairplayforkids.org/wp-content/uploads/2026/03/YouTube-Letter-AI-Slop.pdf">Fairplay for Kids: advocacy letter on AI content, March 2026</a></li>
+      <li><a href="https://fal.ai/learn/tools/ai-video-generators">fal.ai model catalogue</a> and <a href="https://fluxnote.io/blog/ai-video-generation-pricing-guide-2026">2026 video generation pricing comparison</a></li>
+      <li><a href="https://elevenlabs.io/pricing/api">ElevenLabs pricing and language support</a></li>
+      <li><a href="https://dynamoi.com/learn/ai-music-distribution/suno-commercial-rights-explained">Suno commercial rights, free vs paid</a></li>
+      <li><a href="https://www.gutenberg.org/ebooks/28">Jacobs, <em>The Fables of Aesop</em> (1894)</a> &middot; <a href="https://www.gutenberg.org/files/28/28-h/28-h.htm">full text</a></li>
+      <li><a href="https://www.statista.com/statistics/1240228/leading-youtube-channels-made-for-kids-worldwide-by-subscribers/">Statista: most-subscribed made-for-kids channels, 2026</a></li>
+      <li><a href="https://www.getphyllo.com/post/youtube-api-limits-how-to-calculate-api-usage-cost-and-fix-exceeded-api-quota">YouTube Data API quota limits, 2026</a></li>
+    </ul>
+  </section>
+
+  <p class="colophon">
+    Prepared 15 August 2026 &middot; pre-pilot, nothing committed<br>
+    Cost figures are modelled from published per-second and per-image rates with retry ratios applied; treat them as planning estimates until Pilot&nbsp;A returns real numbers.<br>
+    Copyright status of specific Greek editions requires per-title verification before use.
+  </p>
+
+</div>

@@ -1,0 +1,36 @@
+# Secrets — never commit API keys (fal.ai, ElevenLabs, YouTube OAuth)
+.env
+.env.*
+!.env.example
+*.pem
+client_secret*.json
+token.json
+
+# Generated episode media — large, reproducible, does not belong in git.
+# Keep the manifests and prompts; regenerate the pixels.
+episodes/*/frames/
+episodes/*/clips/
+episodes/*/audio/
+episodes/*/renders/
+*.mp4
+*.mov
+*.wav
+*.mp3
+*.png
+*.jpg
+*.jpeg
+!brand/**/*.png
+
+# Tooling
+node_modules/
+__pycache__/
+.venv/
+venv/
+.python-version
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
