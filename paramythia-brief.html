@@ -109,7 +109,8 @@
     line-height: 1.5;
     color: var(--ink-2);
     margin: 0;
-    max-width: 56ch;
+    max-width: 52ch;
+    text-wrap: balance;
   }
 
   .meta {
@@ -183,7 +184,8 @@
     margin: 12px 0 -8px;
   }
 
-  p { margin: 0; }
+  p { margin: 0; text-wrap: pretty; }
+  li { text-wrap: pretty; }
 
   a { color: var(--indigo); text-decoration-thickness: 1px; text-underline-offset: 2px; }
   a:focus-visible { outline: 2px solid var(--ochre); outline-offset: 3px; border-radius: 2px; }
@@ -533,6 +535,126 @@
   @media (prefers-reduced-motion: no-preference) {
     .masthead, section { animation: rise 0.5s ease-out both; }
     @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  }
+
+  /* ---------- print ---------- */
+
+  @page {
+    size: A4;
+    margin: 17mm 15mm 15mm;
+  }
+
+  @media print {
+    /* Force the light palette — a dark-mode PDF is unreadable on paper. */
+    :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
+      --paper:      #FFFFFF;
+      --surface:    #F4F2EC;
+      --surface-2:  #E8E5DC;
+      --ink:        #16181C;
+      --ink-2:      #3E434E;
+      --ink-3:      #6B7180;
+      --rule:       #CFCBC1;
+      --rule-soft:  #E2DED5;
+      --indigo:     #23305A;
+      --ochre:      #92531A;
+      --olive:      #3F5838;
+      --rust:       #872C22;
+    }
+
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      animation: none !important;
+      transition: none !important;
+    }
+
+    body { font-size: 10.2pt; line-height: 1.55; }
+
+    /* Chrome cannot fragment flex containers across printed pages — children
+       vanish while the parent still paints. Fall back to block layout and
+       replace `gap` with margins. */
+    .page, .masthead, section, .summary, .findings,
+    .sources, .gates, .verdict, .option, .pilot, .head {
+      display: block;
+    }
+    .page { max-width: none; padding: 0; }
+
+    .masthead > * + *,
+    section > * + *,
+    .summary > * + *,
+    .verdict > * + *,
+    .option > * + *,
+    .pilot > * + *,
+    .sources > * + * { margin-top: 10px; }
+
+    section > h2 + p, section > p + p { margin-top: 8px; }
+    .findings > li + li { margin-top: 11px; }
+
+    /* Grid tracks mis-size under pagination the same way flex children drop.
+       Use block text with an absolutely-placed marker instead. */
+    .findings li {
+      display: block;
+      position: relative;
+      padding-left: 30px;
+      width: auto;
+    }
+    .findings li::before {
+      position: absolute;
+      left: 0;
+      top: 1px;
+      padding-top: 0;
+    }
+
+    .spec { display: block; }
+    .spec dt {
+      float: left;
+      clear: left;
+      width: 92px;
+      padding-top: 2px;
+    }
+    .spec dd { margin-left: 106px; margin-bottom: 5px; }
+    .spec::after { content: ""; display: table; clear: both; }
+    ul, ol { margin-top: 8px; }
+    ul > li + li, ol > li + li { margin-top: 6px; }
+    .option { margin-bottom: 12px; }
+    .price { margin-top: 10px; }
+
+    h1 { font-size: 30pt; }
+    h2 { font-size: 17pt; }
+    h3 { font-size: 11pt; }
+    .standfirst { font-size: 12pt; max-width: none; }
+    .summary h2 { font-size: 14pt; }
+    .option-name, .pilot-title { font-size: 13pt; }
+    table { font-size: 8.8pt; min-width: 0; }
+    th { font-size: 7pt; }
+    .verdict p, .findings li { font-size: 10pt; }
+
+    .masthead { padding: 0 0 22px; }
+    section { padding-top: 26px; }
+    .summary { margin-top: 24px; padding: 18px 20px; }
+    .sources { padding-top: 26px; }
+
+    /* Keep reasoning units intact across page breaks. */
+    .verdict, .option, .pilot, .gate, .findings li,
+    .table-wrap, .spec, .kill, .colophon {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    tr, li { break-inside: avoid; page-break-inside: avoid; }
+
+    h1, h2, h3, h4, .part-label, .gate-head, .pilot-head {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+
+    .table-wrap { overflow: visible; }
+    .versus { grid-template-columns: 1fr 1fr; }
+
+    /* Start the major parts on a fresh page where it aids reading. */
+    section:nth-of-type(7) { break-before: page; page-break-before: always; }
+
+    a { text-decoration: none; }
+    .sources a { word-break: break-word; }
   }
 </style>
 
