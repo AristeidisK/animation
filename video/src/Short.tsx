@@ -15,9 +15,6 @@ const RAMP: Record<string, string[]> = Object.fromEntries(
   Object.entries(tokens.sceneKeys).map(([k, v]: [string, any]) => [k, v.ramp])
 );
 
-const HAVE_BG = new Set(["shot01", "shot02", "shot08", "shot12"]);
-const pad = (n: number) => `shot${String(n).padStart(2, "0")}`;
-
 type Cast = { who: string; x: number; y: number; scale: number; drift?: number[]; rot?: number };
 
 /** Flat depth planes standing in for an unrendered background. Deliberately
@@ -64,12 +61,11 @@ const Shot: React.FC<{ shot: any }> = ({ shot }) => {
 
   // Hold the first and last beats a touch longer before moving.
   const zoom = 1.06 + t * 0.07;
-  const bgFile = pad(shot.id);
-  const hasBg = HAVE_BG.has(bgFile);
+  const bgFile = shot.plate as string | undefined;
 
   return (
     <AbsoluteFill style={{ backgroundColor: GROUND[shot.scene_key] ?? "#F7F1E4", overflow: "hidden" }}>
-      {hasBg ? (
+      {bgFile ? (
         <AbsoluteFill style={{
           transform: `scale(${zoom}) translateX(${(t - 0.5) * -2.2}%)`,
           transformOrigin: "center center",

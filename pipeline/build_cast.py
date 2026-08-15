@@ -16,7 +16,7 @@ Every colour derives from brand/tokens.json. Second tones are computed from the
 palette rather than invented, so the cast can never fall out of step with it.
 
 Usage:  python3 pipeline/build_cast.py
-Output: brand/characters/*.svg
+Output: brand/characters/<Name>/<name>.svg  (mirrored to video/public/cast/)
 """
 
 import colorsys
@@ -25,6 +25,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "brand" / "characters"
+MIRROR = ROOT / "video" / "public" / "cast"
+
+# One folder per character, matching how the reference art is organised.
+FOLDER = {"kouki": "Owl", "hare": "Hare", "tortoise": "Tortoise"}
 
 RAW = {k: v["hex"] for k, v in
        json.loads((ROOT / "brand/tokens.json").read_text())["core"].items()}
@@ -85,7 +89,14 @@ def clipped(cid, shape_svg, inner):
 def svg(name, w, h, parts):
     doc = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" '
            f'width="{w}" height="{h}">\n  ' + "\n  ".join(parts) + "\n</svg>\n")
-    (OUT / f"{name}.svg").write_text(doc)
+    dest = OUT / FOLDER[name] / f"{name}.svg"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(doc)
+    # Mirror so the renderer can never run against stale assets — this went
+    # stale once already after the folders were reorganised.
+    if MIRROR.parent.exists():
+        MIRROR.mkdir(parents=True, exist_ok=True)
+        (MIRROR / f"{name}.svg").write_text(doc)
     return len(doc)
 
 
@@ -209,6 +220,7 @@ def tortoise():
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     for fn in (kouki, hare, tortoise):
-        print(f"  {fn.__name__:9s} {fn():5d} bytes")
+        n = fn.__name__
+        print(f"  {n:9s} {fn():5d} bytes -> brand/characters/{FOLDER[n]}/{n}.svg")
     print(f"\n{len(RAW)} palette tokens -> {len(C)} tones (base, -dark, -deep, -light).")
     print("Second tones are computed, never invented. Flat two-tone, no gradients.")

@@ -23,6 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "brand" / "plates"
+MIRROR = ROOT / "video" / "public" / "frames"
 
 import sys
 sys.path.insert(0, str(ROOT / "pipeline"))
@@ -122,6 +123,9 @@ def write(name, parts):
     doc = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
            f'width="{W}" height="{H}">\n  ' + "\n  ".join(parts) + "\n</svg>\n")
     (OUT / f"{name}.svg").write_text(doc)
+    if MIRROR.parent.exists():
+        MIRROR.mkdir(parents=True, exist_ok=True)
+        (MIRROR / f"{name}.svg").write_text(doc)
     return len(doc)
 
 

@@ -3,7 +3,7 @@
 Assemble prompts from the style bible and generate key frames via fal.ai.
 
 The whole point is that nothing here invents style. Every fixed block is read
-verbatim from brand/prompt-kit.md and brand/characters/owl.md at run time, so a
+verbatim from brand/prompt-kit.md and brand/characters/Owl/owl.md at run time, so a
 frame generated in six months is assembled from the same words as one generated
 today. If the look drifts, the bible changed — not this script.
 
@@ -67,7 +67,7 @@ def load_prompt_kit(compact=False):
 
 
 def load_owl(compact=False):
-    t = (ROOT / "brand/characters/owl.md").read_text()
+    t = (ROOT / "brand/characters/Owl/owl.md").read_text()
     for s in re.split(r"\n## ", t):
         if s.startswith("8. Prompt block"):
             blocks = fences(s)
