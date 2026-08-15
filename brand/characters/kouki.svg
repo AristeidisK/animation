@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" width="800" height="900">
+  <ellipse cx="282" cy="291" rx="32" ry="75" fill="#6B4A78" transform="rotate(24 282 291)"/>
+  <ellipse cx="518" cy="291" rx="32" ry="75" fill="#6B4A78" transform="rotate(-24 518 291)"/>
+  <ellipse cx="400" cy="522" rx="260" ry="272" fill="#6B4A78"/>
+  <ellipse cx="400" cy="645" rx="126" ry="111" fill="#F7F1E4"/>
+  <rect x="318" y="770" width="72" height="26" rx="13" fill="#F2B33D"/>
+  <rect x="410" y="770" width="72" height="26" rx="13" fill="#F2B33D"/>
+  <ellipse cx="330" cy="415" rx="75" ry="75" fill="#F2B33D"/>
+  <ellipse cx="470" cy="415" rx="75" ry="75" fill="#F2B33D"/>
+  <ellipse cx="330" cy="415" rx="27" ry="27" fill="#23212B"/>
+  <ellipse cx="470" cy="415" rx="27" ry="27" fill="#23212B"/>
+  <polygon points="371.0,448.0 429.0,448.0 400,514.0" fill="#D0603C"/>
+  <rect x="268" y="302" width="118" height="18" rx="9" fill="#23212B"/>
+  <rect x="414" y="302" width="118" height="18" rx="9" fill="#23212B"/>
+</svg>

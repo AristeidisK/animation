@@ -1,83 +1,176 @@
 {
   "episode": "001-tortoise-hare",
-  "title": { "en": "The Tortoise and the Hare", "gr": "Ο Λαγός και η Χελώνα" },
-  "format": { "w": 1080, "h": 1920, "fps": 24 },
+  "title": {
+    "en": "The Tortoise and the Hare",
+    "gr": "Ο Λαγός και η Χελώνα"
+  },
+  "format": {
+    "w": 1080,
+    "h": 1920,
+    "fps": 24
+  },
   "style": "flat vector on depth planes",
-  "assembly": "STYLE_PREAMBLE + SCENE_KEY + PLANE_BRIEF + subject + NEGATIVE — blocks pasted verbatim from ../../brand/prompt-kit.md",
-  "notes": "Vertical Short. Owl appears in shots 1 and 12 only; the plum lock applies in both.",
-
+  "assembly": "STYLE_PREAMBLE + PERIOD + SCENE_KEY + PLANE_BRIEF + subject — blocks pasted verbatim from ../../brand/prompt-kit.md. The host is composited, not prompted.",
+  "notes": "Vertical Short. Kouki is a Figma vector component, composited in the edit — never generated. Shots 1 and 12 generate as empty backgrounds with space reserved for her on the branch.",
   "shots": [
     {
-      "id": 1, "t": 0.0, "dur": 5.0, "scene_key": "hearth-amber", "owl": true,
-      "subject": "A stylised plum owl perched three-quarter on an olive branch, both large golden eyes to camera, brows level. Warm lamplit interior glow behind. Far plane: soft rounded shapes suggesting a room. Foreground: olive leaves cropped by the bottom-left frame edge. Medium shot, owl off-centre right.",
+      "id": 1,
+      "t": 0.0,
+      "dur": 5.0,
+      "scene_key": "hearth-amber",
+      "owl": true,
+      "subject": "An empty olive branch crossing the lower third of frame, warm lamplit glow behind, soft rounded shapes suggesting a sheltered courtyard. Space clear on the branch, right of centre. No animals, no birds.",
       "motion": "Slow push in. One slow blink. Branch drifts 2px.",
-      "narration": { "en": "Everyone knows this one. Almost nobody remembers why it's good.", "gr": "Την ξέρουν όλοι αυτή. Σχεδόν κανείς δεν θυμάται γιατί είναι καλή." }
+      "narration": {
+        "en": "Everyone knows this one. Almost nobody remembers why it's good.",
+        "gr": "Την ξέρουν όλοι αυτή. Σχεδόν κανείς δεν θυμάται γιατί είναι καλή."
+      },
+      "composite": "Kouki (Figma component) over this background"
     },
     {
-      "id": 2, "t": 5.0, "dur": 5.0, "scene_key": "midday-white", "owl": false,
-      "subject": "A hare mid-stride on a dusty village road, built from simple circles and rounded rectangles, long ears swept back. Far plane: low bleached hills. Mid plane: stepped whitewashed houses. Foreground: a dry stone wall cropped by the bottom frame edge. Wide shot, hare off-centre left.",
+      "id": 2,
+      "t": 5.0,
+      "dur": 5.0,
+      "scene_key": "midday-white",
+      "owl": false,
+      "subject": "A hare mid-stride on a dusty track, built from simple circles and rounded rectangles, long ears swept back. Far plane: low bleached hills. Mid plane: an olive grove and a low rough stone wall. Foreground: a dry stone wall cropped by the bottom frame edge. Wide shot, hare off-centre left.",
       "motion": "Horizontal pan following the hare. Dust shapes drift back.",
-      "narration": { "en": "The hare was fast.", "gr": "Ο λαγός ήταν γρήγορος." }
+      "narration": {
+        "en": "The hare was fast.",
+        "gr": "Ο λαγός ήταν γρήγορος."
+      }
     },
     {
-      "id": 3, "t": 10.0, "dur": 3.0, "scene_key": "midday-white", "owl": false,
+      "id": 3,
+      "t": 10.0,
+      "dur": 3.0,
+      "scene_key": "midday-white",
+      "owl": false,
       "subject": "Close shot of the same hare, chest out, chin lifted, eyes half-lidded with confidence. Flat bleached background with one hard blue shadow shape. Foreground: a single cropped olive branch top-right.",
       "motion": "Static hold. Ears twitch once.",
-      "narration": { "en": "\"Nobody here is faster than me.\"", "gr": "«Κανείς εδώ δεν τρέχει πιο γρήγορα από μένα.»" }
+      "narration": {
+        "en": "\"Nobody here is faster than me.\"",
+        "gr": "«Κανείς εδώ δεν τρέχει πιο γρήγορα από μένα.»"
+      }
     },
     {
-      "id": 4, "t": 13.0, "dur": 4.0, "scene_key": "olive-shade", "owl": false,
+      "id": 4,
+      "t": 13.0,
+      "dur": 4.0,
+      "scene_key": "olive-shade",
+      "owl": false,
       "subject": "A tortoise seen from a low angle, calm and unimpressed, shell built from simple geometric segments. Cool green shade. Far plane: silhouetted tree mass. Foreground: grass blades cropped by the bottom edge. Subject centred low in frame.",
       "motion": "Very slow push in. Head extends slightly.",
-      "narration": { "en": "The tortoise said: \"Let's find out.\"", "gr": "Η χελώνα είπε: «Θες να το δούμε;»" }
+      "narration": {
+        "en": "The tortoise said: \"Let's find out.\"",
+        "gr": "Η χελώνα είπε: «Θες να το δούμε;»"
+      }
     },
     {
-      "id": 5, "t": 17.0, "dur": 3.0, "scene_key": "midday-white", "owl": false,
-      "subject": "A small crowd of simple flat animal shapes laughing — a goat, two birds, a donkey — all leaning back. The tortoise small and completely still among them. Bleached midday light. Foreground: cropped fence posts along the bottom edge.",
+      "id": 5,
+      "t": 17.0,
+      "dur": 3.0,
+      "scene_key": "midday-white",
+      "owl": false,
+      "subject": "A small crowd of simple flat animal shapes laughing — a goat, two birds, a donkey — all leaning back. The tortoise small and completely still among them. Bleached light, an olive grove behind. Foreground: cropped grasses along the bottom edge.",
       "motion": "Crowd shapes bob. The tortoise does not move at all.",
-      "narration": { "en": "Everyone laughed. The tortoise didn't.", "gr": "Γέλασαν όλοι. Η χελώνα όχι." }
+      "narration": {
+        "en": "Everyone laughed. The tortoise didn't.",
+        "gr": "Γέλασαν όλοι. Η χελώνα όχι."
+      }
     },
     {
-      "id": 6, "t": 20.0, "dur": 4.0, "scene_key": "midday-white", "owl": false,
+      "id": 6,
+      "t": 20.0,
+      "dur": 4.0,
+      "scene_key": "midday-white",
+      "owl": false,
       "subject": "A start line marked in the dust. The hare exploding forward, body stretched, dust bursting behind him. The tortoise one step behind, mid-step, unhurried. Wide shot. Foreground: dust shapes cropped by the bottom edge.",
       "motion": "Fast whip pan left to right, settling.",
-      "narration": { "en": "And they were off.", "gr": "Και ξεκίνησαν." }
+      "narration": {
+        "en": "And they were off.",
+        "gr": "Και ξεκίνησαν."
+      }
     },
     {
-      "id": 7, "t": 24.0, "dur": 4.0, "scene_key": "midday-white", "owl": false,
+      "id": 7,
+      "t": 24.0,
+      "dur": 4.0,
+      "scene_key": "midday-white",
+      "owl": false,
       "subject": "Extremely wide shot. The hare tiny and far away near the top of frame, an empty pale road curving back toward the viewer, nothing else on it. Far plane: flat hills. Foreground: a cropped cypress silhouette at the left edge.",
       "motion": "Slow pull back, emphasising the empty road.",
-      "narration": { "en": "He was so far ahead he couldn't see her any more.", "gr": "Είχε φύγει τόσο μπροστά που δεν την έβλεπε πια." }
+      "narration": {
+        "en": "He was so far ahead he couldn't see her any more.",
+        "gr": "Είχε φύγει τόσο μπροστά που δεν την έβλεπε πια."
+      }
     },
     {
-      "id": 8, "t": 28.0, "dur": 5.0, "scene_key": "olive-shade", "owl": false,
+      "id": 8,
+      "t": 28.0,
+      "dur": 5.0,
+      "scene_key": "olive-shade",
+      "owl": false,
       "subject": "The hare asleep on his back beneath a broad olive tree, one long ear flopped over his eyes, paws loose. Cool flat shade. Far plane: low hills. Mid plane: a dry stone wall. Foreground: olive branches cropped by the top-left frame edge. Wide shot, subject off-centre right.",
       "motion": "Gentle chest rise and fall. Leaf shapes drift.",
-      "narration": { "en": "\"I could sleep and still win.\" So he did.", "gr": "«Μπορώ και να κοιμηθώ και πάλι θα κερδίσω.» Και κοιμήθηκε." }
+      "narration": {
+        "en": "\"I could sleep and still win.\" So he did.",
+        "gr": "«Μπορώ και να κοιμηθώ και πάλι θα κερδίσω.» Και κοιμήθηκε."
+      }
     },
     {
-      "id": 9, "t": 33.0, "dur": 5.0, "scene_key": "olive-shade", "owl": false,
+      "id": 9,
+      "t": 33.0,
+      "dur": 5.0,
+      "scene_key": "olive-shade",
+      "owl": false,
       "subject": "The tortoise walking steadily past the sleeping hare in the mid ground, facing forward, not looking at him. The hare small and asleep behind her. Foreground: tall grass shapes cropped by the bottom and right frame edges, partially occluding her.",
       "motion": "Slow lateral track with the tortoise. Foreground grass parallaxes fast.",
-      "narration": { "en": "She walked past him. She didn't stop to look.", "gr": "Πέρασε δίπλα του. Δεν σταμάτησε να κοιτάξει." }
+      "narration": {
+        "en": "She walked past him. She didn't stop to look.",
+        "gr": "Πέρασε δίπλα του. Δεν σταμάτησε να κοιτάξει."
+      }
     },
     {
-      "id": 10, "t": 38.0, "dur": 4.0, "scene_key": "midday-white", "owl": false,
+      "id": 10,
+      "t": 38.0,
+      "dur": 4.0,
+      "scene_key": "midday-white",
+      "owl": false,
       "subject": "The hare suddenly upright, eyes wide, ears straight up, mid-scramble, dust bursting under him. Harsh bleached light, one hard blue shadow. Foreground: cropped grass at the bottom edge.",
       "motion": "Sharp snap zoom in, then hold.",
-      "narration": { "en": "He woke up.", "gr": "Ξύπνησε." }
+      "narration": {
+        "en": "He woke up.",
+        "gr": "Ξύπνησε."
+      }
     },
     {
-      "id": 11, "t": 42.0, "dur": 4.0, "scene_key": "hearth-amber", "owl": false,
-      "subject": "The tortoise already at the finish line, small and still, warm terracotta light. A few simple flat animal shapes around her, quiet rather than cheering. Foreground: a cropped ribbon shape across the lower frame.",
+      "id": 11,
+      "t": 42.0,
+      "dur": 4.0,
+      "scene_key": "hearth-amber",
+      "owl": false,
+      "subject": "A finish line marked by a scratch in the dust beside an olive tree. The tortoise already there, small and still, warm light. A few simple flat animal shapes around her, quiet rather than cheering. Foreground: cropped grasses across the lower frame.",
       "motion": "Hold, almost static. Two seconds of no narration at the end.",
-      "narration": { "en": "She was already there.", "gr": "Εκείνη ήταν ήδη εκεί." }
+      "narration": {
+        "en": "She was already there.",
+        "gr": "Εκείνη ήταν ήδη εκεί."
+      }
     },
     {
-      "id": 12, "t": 46.0, "dur": 6.0, "scene_key": "hearth-amber", "owl": true,
-      "subject": "The plum owl perched back three-quarter on the olive branch, head turned away from camera, looking off into warm lamplight. Foreground: olive leaves cropped by the right frame edge. Medium shot, owl off-centre left.",
+      "id": 12,
+      "t": 46.0,
+      "dur": 6.0,
+      "scene_key": "hearth-amber",
+      "owl": true,
+      "subject": "An empty olive branch crossing the lower third of frame, warm evening light, quiet open ground beyond. Space clear on the branch, left of centre. No animals, no birds.",
       "motion": "Very slow pull back. Head turns a few degrees on the final line, then stillness.",
-      "narration": { "en": "The hare was faster. He was right about that. So — what did he get wrong?", "gr": "Ο λαγός ήταν πιο γρήγορος. Σ' αυτό είχε δίκιο. Λοιπόν — σε τι έκανε λάθος;" }
+      "narration": {
+        "en": "The hare was faster. He was right about that. So — what did he get wrong?",
+        "gr": "Ο λαγός ήταν πιο γρήγορος. Σ' αυτό είχε δίκιο. Λοιπόν — σε τι έκανε λάθος;"
+      },
+      "composite": "Kouki (Figma component) over this background"
     }
-  ]
+  ],
+  "period": "archaic-greek"
 }

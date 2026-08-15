@@ -23,6 +23,7 @@ MODEL = "fal-ai/recraft/v3/text-to-image"
 # vector_illustration style and accepts a brand colour array. It has no
 # negative-prompt parameter, so the constraints live in the style preamble.
 STYLE = "vector_illustration"
+PROMPT_LIMIT = 1000  # Recraft V3 hard cap
 
 
 # ---------- reading the bible ----------
@@ -31,7 +32,7 @@ def fences(text):
     return re.findall(r"```\n(.*?)```", text, re.S)
 
 
-def load_prompt_kit():
+def load_prompt_kit(compact=False):
     t = (ROOT / "brand/prompt-kit.md").read_text()
     sections = re.split(r"\n## ", t)
 
@@ -41,22 +42,36 @@ def load_prompt_kit():
                 return s
         raise SystemExit(f"prompt-kit.md: missing section '{prefix}'")
 
+    def kv(block):
+        out = {}
+        for line in block.strip().splitlines():
+            name, _, body = line.partition(":")
+            out[name.strip()] = body.strip()
+        return out
+
+    if compact:
+        blocks = fences(sect("1b. Compact blocks"))
+        return blocks[0].strip(), blocks[1].strip(), kv(blocks[3]), kv(blocks[2])
+
     preamble = fences(sect("1. Style preamble"))[0].strip()
     plane = fences(sect("3. Plane brief"))[0].strip()
-
     keys = {}
-    keysect = sect("2. Scene key fragments")
-    for name, body in re.findall(r"\*\*([a-z-]+)\*\*.*?\n```\n(.*?)```", keysect, re.S):
+    for name, body in re.findall(r"\*\*([a-z-]+)\*\*.*?\n```\n(.*?)```",
+                                 sect("2. Scene key fragments"), re.S):
         keys[name] = body.strip()
+    periods = {}
+    for name, body in re.findall(r"\*\*([a-z-]+)\*\*.*?\n```\n(.*?)```",
+                                 sect("1a. Period kits"), re.S):
+        periods[name] = body.strip()
+    return preamble, plane, keys, periods
 
-    return preamble, plane, keys
 
-
-def load_owl():
+def load_owl(compact=False):
     t = (ROOT / "brand/characters/owl.md").read_text()
     for s in re.split(r"\n## ", t):
         if s.startswith("8. Prompt block"):
-            return fences(s)[0].strip()
+            blocks = fences(s)
+            return blocks[1].strip() if compact and len(blocks) > 1 else blocks[0].strip()
     raise SystemExit("owl.md: missing section '8. Prompt block'")
 
 
@@ -79,15 +94,15 @@ SCENE_PALETTE = {
 }
 
 
-def build_prompt(shot, preamble, plane, keys, owl):
+def build_prompt(shot, preamble, plane, keys, periods, period):
     key = shot["scene_key"]
     if key not in keys:
         raise SystemExit(f"shot {shot['id']}: unknown scene key '{key}'")
-    parts = [preamble, keys[key], plane]
-    if shot.get("owl"):
-        parts.append(owl)
-    parts.append(shot["subject"])
-    return "\n\n".join(parts)
+    if period not in periods:
+        raise SystemExit(f"unknown period '{period}' — see prompt-kit.md section 1a")
+    # The host is a Figma vector component composited in the edit. She is never
+    # generated, so she never enters the prompt. That is what makes her stable.
+    return "\n\n".join([preamble, periods[period], keys[key], plane, shot["subject"]])
 
 
 def palette_for(shot, colors):
@@ -154,28 +169,44 @@ def main():
     fmt = shots["format"]
     outdir = epdir / "frames"; outdir.mkdir(parents=True, exist_ok=True)
 
-    preamble, plane, keys = load_prompt_kit()
-    owl = load_owl()
+    # Recraft caps prompts at 1000 chars. Fall back to the authorised compact
+    # blocks per shot rather than truncating, which would silently drop rules.
+    full = load_prompt_kit(False)
+    comp = load_prompt_kit(True)
+    period = shots.get("period")
+    if not period:
+        raise SystemExit("shots.json must declare a \"period\" — see prompt-kit.md 1a")
     colors = load_colors()
 
     todo = [s for s in shots["shots"] if not wanted or s["id"] in wanted]
     print(f"{episode}: {len(todo)} shot(s), {n} variant(s) each, {fmt['w']}x{fmt['h']}")
-    print(f"model {MODEL} · style {STYLE}\n")
+    print(f"model {MODEL} · style {STYLE} · period {period}\n")
 
     log = []
     for shot in todo:
-        prompt = build_prompt(shot, preamble, plane, keys, owl)
+        pre, plane, keys, periods = full
+        prompt = build_prompt(shot, pre, plane, keys, periods, period)
+        mode = "full"
+        if len(prompt) > PROMPT_LIMIT:
+            pre, plane, keys, periods = comp
+            prompt = build_prompt(shot, pre, plane, keys, periods, period)
+            mode = "compact"
+            if len(prompt) > PROMPT_LIMIT:
+                raise SystemExit(
+                    f"shot {shot['id']}: {len(prompt)} chars exceeds {PROMPT_LIMIT} "
+                    f"even compact. Shorten the shot subject in shots.json.")
         pal = palette_for(shot, colors)
         for v in range(1, n + 1):
             tag = f"shot{shot['id']:02d}" + (f"_v{v}" if n > 1 else "")
-            print(f"  {tag}  [{shot['scene_key']}]{'  OWL' if shot.get('owl') else ''}")
+            print(f"  {tag}  [{shot['scene_key']}] {mode} {len(prompt)}ch"
+                  f"{'  +composite Kouki' if shot.get('owl') else ''}")
             res = generate(prompt, pal, fmt["w"], fmt["h"])
             for img in res.get("images", []):
                 dest = outdir / f"{tag}.png"
                 download(img["url"], dest)
                 print(f"    -> {dest.relative_to(ROOT)}  ({dest.stat().st_size // 1024} KB)")
                 log.append({"shot": shot["id"], "variant": v, "file": dest.name,
-                            "scene_key": shot["scene_key"], "prompt": prompt})
+                            "scene_key": shot["scene_key"], "mode": mode, "prompt": prompt})
 
     (outdir / "generation-log.json").write_text(json.dumps(log, indent=2))
     print(f"\ndone — {len(log)} image(s). Prompts recorded in frames/generation-log.json")

@@ -29,6 +29,81 @@ space. Warm, calm, and legible at small size.
 
 ---
 
+## 1a. Period kits — pick one per episode
+
+**Every episode must declare a period.** Without one the model defaults to
+postcard Greece — Byzantine domes, whitewashed Cycladic villages, bell towers —
+which is roughly 1,200 years too late for Aesop and wrong for British tales in
+every direction. This block is not optional.
+
+**archaic-greek** — Aesop, ~6th century BC
+```
+Setting is archaic Greece, sixth century BC. Rough stone and mud-brick walls,
+timber posts, low shallow-pitched terracotta tile roofs. Olive groves, cypress,
+dry stone field walls, threshing floors, clay amphorae, woven baskets. Landscape
+first, buildings sparse and low. Absolutely no domes, no whitewashed villages,
+no bell towers, no arched windows, no blue shutters, no modern buildings.
+```
+
+**greek-village** — later Greek folk tales, 18th–19th century
+```
+Setting is a Greek village of the nineteenth century. Whitewashed stone walls,
+blue shutters and doors, tiled roofs, a small bell tower, stepped lanes, olive
+and lemon trees. The postcard Greece — correct here, and only here.
+```
+
+**british-rural** — Joseph Jacobs, timeless rural Britain
+```
+Setting is rural Britain. Dry stone walls, hedgerows, thatched cottages, oak and
+hawthorn, muddy lanes, damp overcast light. No Mediterranean architecture, no
+terracotta, no cypress.
+```
+
+Record the chosen kit in the episode's `shots.json` as `"period"`. Mixing kits
+inside one episode is a bug unless the story crosses cultures deliberately.
+
+---
+
+## 1b. Compact blocks — for models with prompt length limits
+
+Recraft V3 caps prompts at 1000 characters. These are the authorised short
+forms. They are shorter, **not looser** — every constraint dropped here is one
+the model parameter already enforces (`style: vector_illustration` carries "flat
+vector, no outlines"; the `colors` array carries the palette).
+
+Use these only when the assembled prompt would exceed the model's budget, and
+never edit them ad hoc. If a model needs something shorter still, that model is
+wrong for this job.
+
+**Compact style preamble**
+```
+Flat vector children's illustration. Bold flat colour, no outlines, simple geometric shapes, no texture or gradients, hard-edged shadows, generous negative space.
+```
+
+**Compact plane brief**
+```
+Built as flat overlapping depth planes: flat sky, silhouetted far landscape, readable mid-ground, the subject, and a foreground element cropped by the frame edge.
+```
+
+**Compact period kits**
+```
+archaic-greek: Archaic Greece sixth century BC: rough stone and mud-brick, low terracotta roofs, olive groves, cypress, dry stone walls. No domes, no whitewash, no bell towers.
+greek-village: Nineteenth-century Greek village: whitewashed stone, blue shutters, tiled roofs, stepped lanes, olive and lemon trees.
+british-rural: Rural Britain: dry stone walls, hedgerows, thatch, oak and hawthorn, muddy lanes, damp overcast light. No Mediterranean architecture.
+```
+
+**Compact scene keys**
+```
+midday-white: Bleached midday Mediterranean light, bone-white ground, golden ochre, deep blue, terracotta, hard blue shadows.
+dusk-violet: Evening, deep violet ground, terracotta rooftops, golden lit windows, cool sky, warm interior light.
+olive-shade: Cool shade beneath trees, grey-green olive ground, pale seafoam, warm bone highlights, flat light.
+storm-grey: Cold damp northern weather, muted blue-grey ground, deep darks, exactly one warm golden point of light.
+hearth-amber: Warm lamplit interior, terracotta ground, golden light, bone highlights, deep soft shadows.
+sea-deep: Deep night water, dark navy ground, saturated blue, pale seafoam highlights, a few small white stars.
+```
+
+---
+
 ## 2. Scene key fragments
 
 Pick exactly one per shot. Pull the hex values from `tokens.json` — they are

@@ -124,6 +124,16 @@ shading, no rendering, no outlines. She is the only purple object in the image.
 Append the scene key fragment and the global negative prompt from
 `../prompt-kit.md`.
 
+### Compact block — for models with prompt length limits
+
+Authorised short form. Shorter, not looser: the dropped constraints are the ones
+`style: vector_illustration` and the `colors` array already enforce. Never edit
+ad hoc.
+
+```
+A stylised owl: rounded plum-purple dome body tapering to two blunt ear tufts, bone-white chest, two very large golden circular eyes with dark round pupils, two short dark eyebrow strokes above them, a small terracotta triangle beak, no mouth, no feathers, no visible legs. Two heads tall, stylised. Perched on an olive branch. The only purple object in the image.
+```
+
 ---
 
 ## 9. Voice
