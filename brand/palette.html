@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paramythia &mdash; Palette</title><style>
+:root{color-scheme:dark;--bg:#1A1820;--card:#242130;--line:#332F42;--fg:#F7F1E4;--dim:#A79FB8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);padding:44px 40px 90px;
+ font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
+h1{font-size:30px;font-weight:650;margin:0 0 6px;letter-spacing:-.02em}
+.lede{margin:0 0 4px;color:var(--dim);max-width:70ch}
+.src{margin:0 0 40px;color:var(--dim);font-size:13px}
+.src code{background:var(--card);padding:3px 8px;border-radius:5px;font-size:12px}
+h2{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+ color:#F2B33D;margin:44px 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.tok{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);
+ border-radius:10px;padding:16px;align-items:flex-start}
+.chip{width:78px;height:126px;border-radius:7px;flex:0 0 auto;
+ box-shadow:inset 0 0 0 1px #0004}
+.meta{min-width:0;flex:1}
+.meta h3{margin:0;font-size:17px;font-weight:650;letter-spacing:-.01em}
+.res{font-style:normal;font-size:9.5px;letter-spacing:.13em;background:#6B4A78;
+ color:#F7F1E4;padding:2px 7px;border-radius:4px;vertical-align:2px;margin-left:7px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.big{display:block;font-size:13px;color:var(--dim);padding:3px 0 8px;letter-spacing:.04em}
+.meta p{margin:0 0 9px;font-size:13.5px;color:var(--dim)}
+.meta ul{margin:0;padding-left:17px;font-size:13px}
+.meta li{padding:1px 0}
+.meta li::marker{color:#5E5772}
+.tones{display:flex;gap:7px;margin-top:12px;padding-top:11px;border-top:1px solid var(--line)}
+.tone{flex:1;text-align:center}
+.tone span{display:block;height:24px;border-radius:4px;box-shadow:inset 0 0 0 1px #0004}
+.tone b{display:block;font-size:9.5px;font-weight:600;letter-spacing:.07em;
+ color:var(--dim);padding-top:4px}
+.tone code{font-size:8.5px;color:#6E6683}
+.ramp{background:var(--card);border:1px solid var(--line);border-radius:10px;
+ padding:16px;margin-bottom:12px}
+.ramp-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.ramp-h h3{margin:0;font-size:16px;font-weight:650}
+.ramp-h p{margin:0;font-size:13px;color:var(--dim)}
+.bands{display:flex;gap:5px;margin:12px 0 9px}
+.band{flex:1;height:74px;border-radius:6px;padding:7px 8px;
+ box-shadow:inset 0 0 0 1px #0004;display:flex;flex-direction:column;justify-content:space-between}
+.band b{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#00000075}
+.band span{font-size:10.5px;color:#00000090;font-weight:600}
+.use{margin:0;font-size:12.5px;color:var(--dim)}
+.rules{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+.rule{background:var(--card);border-left:3px solid #97362B;border-radius:0 8px 8px 0;padding:14px 16px}
+.rule h3{margin:0 0 5px;font-size:13.5px;font-weight:650}
+.rule p{margin:0;font-size:13px;color:var(--dim)}
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+ color:#6E6683;font-size:12px;font-family:ui-monospace,Menlo,monospace;line-height:1.8}
+</style></head><body>
+<h1>Palette</h1>
+<p class="lede">Ten colours. Everything &mdash; the cast, the plates, the Figma variables and the
+image prompts &mdash; reads from one file. Nothing may introduce a colour outside this set.</p>
+<p class="src">Generated from <code>brand/tokens.json</code> &middot; rebuild with
+<code>python3 pipeline/build_palette.py</code></p>
+<h2>Structure</h2><div class="grid"><article class="tok">
+  <div class="chip" style="background:#23212B"></div>
+  <div class="meta">
+    <h3>ink</h3>
+    <code class="big">#23212B</code>
+    <p>Line-free shape darks, text, shadow base. Never pure black.</p>
+    <ul><li>Cypress and trunk silhouettes</li><li>Eyes and pupils, all cast</li><li>Kouki's brows</li><li>Subtitle plate</li><li>Cast shadows at 15%</li></ul>
+    <div class="tones"><div class="tone"><span style="background:#23212B"></span><b>base</b><code>#23212B</code></div><div class="tone"><span style="background:#393644"></span><b>light</b><code>#393644</code></div><div class="tone"><span style="background:#141219"></span><b>dark</b><code>#141219</code></div><div class="tone"><span style="background:#13121A"></span><b>deep</b><code>#13121A</code></div></div>
+  </div>
+</article><article class="tok">
+  <div class="chip" style="background:#F7F1E4"></div>
+  <div class="meta">
+    <h3>bone</h3>
+    <code class="big">#F7F1E4</code>
+    <p>Warm paper ground, highlights, headscarf.</p>
+    <ul><li>Limestone, dry stone walls, road dust</li><li>Hare belly, muzzle, tail</li><li>Tortoise shell plates</li><li>Catchlights</li><li>Subtitle text</li></ul>
+    <div class="tones"><div class="tone"><span style="background:#F7F1E4"></span><b>base</b><code>#F7F1E4</code></div><div class="tone"><span style="background:#FAF6EE"></span><b>light</b><code>#FAF6EE</code></div><div class="tone"><span style="background:#EDDDBB"></span><b>dark</b><code>#EDDDBB</code></div><div class="tone"><span style="background:#E5CD9A"></span><b>deep</b><code>#E5CD9A</code></div></div>
+  </div>
+</article></div><h2>Distance</h2><div class="grid"><article class="tok">
+  <div class="chip" style="background:#1F5FA8"></div>
+  <div class="meta">
+    <h3>aegean</h3>
+    <code class="big">#1F5FA8</code>
+    <p>Anchor blue. Sea, sky, brand primary.</p>
+    <ul><li>Sky, top of the gradient</li><li>Far hills on cool plates</li><li>Brand primary</li></ul>
+    <div class="tones"><div class="tone"><span style="background:#1F5FA8"></span><b>base</b><code>#1F5FA8</code></div><div class="tone"><span style="background:#2975CC"></span><b>light</b><code>#2975CC</code></div><div class="tone"><span style="background:#15477F"></span><b>dark</b><code>#15477F</code></div><div class="tone"><span style="background:#0E335D"></span><b>deep</b><code>#0E335D</code></div></div>
+  </div>
+</article><article class="tok">
+  <div class="chip" style="background:#8B93A0"></div>
+  <div class="meta">
+    <h3>storm</h3>
+    <code class="big">#8B93A0</code>
+    <p>Cold northern weather, damp stone, overcast ground.</p>
+    <ul><li>Hazed far hills</li><li>Dry stone wall shadow faces</li><li>Northern weather</li></ul>
+    <div class="tones"><div class="tone"><span style="background:#8B93A0"></span><b>base</b><code>#8B93A0</code></div><div class="tone"><span style="background:#A6ABB3"></span><b>light</b><code>#A6ABB3</code></div><div class="tone"><span style="background:#6C788C"></span><b>dark</b><code>#6C788C</code></div><div class="tone"><span style="background:#586477"></span><b>deep</b><code>#586477</code></div></div>
+  </div>
+</article><article class="tok">
+  <div class="chip" style="background:#123A68"></div>
+  <div class="meta">
+    <h3>deepsea</h3>
+    <code class="big">#123A68</code>
+    <p>Night water, deep sea, the dark end of the blue range.</p>
+    <ul><li>Night water</li><li>Deep distance</li><li>Darkest blue available</li></ul>
+    <div class="tones"><div class="tone"><span style="background:#123A68"></span><b>base</b><code>#123A68</code></div><div class="tone"><span style="background:#1A508D"></span><b>light</b><code>#1A508D</code></div><div class="tone"><span style="background:#09223E"></span><b>dark</b><code>#09223E</code></div><div class="tone"><span style="background:#051526"></span><b>deep</b><code>#051526</code></div></div>
+  </div>
+</article></div><h2>Land</h2><div class="grid"><article class="tok">
+  <div class="chip" style="background:#6E8B4A"></div>
+  <div class="meta">
+    <h3>olive</h3>
+    <code class="big">#6E8B4A</code>
+    <p>Foliage, hills, cool mid-green.</p>
+    <ul><li>All foliage mass</li><li>Mid hills, grove floor</li><li>Tortoise shell</li><li>The perch branch</li></ul>
+    <div class="tones"><div class="tone"><span style="background:#6E8B4A"></span><b>base</b><code>#6E8B4A</code></div><div class="tone"><span style="background:#85A55E"></span><b>light</b><code>#85A55E</code></div><div class="tone"><span style="background:#546C36"></span><b>dark</b><code>#546C36</code></div><div class="tone"><span style="background:#3F5227"></span><b>deep</b><code>#3F5227</code></div></div>
+  </div>
+</article><article class="tok">
+  <div class="chip" style="background:#79C4C0"></div>
+  <div class="meta">
+    <h3>seafoam</h3>
+    <code class="big">#79C4C0</code>
+    <p>Shallow water, secondary cool, highlight on blue.</p>
+    <ul><li>Olive-leaf silver highlights</li><li>Sky at the horizon band</li><li>Tortoise skin</li><li>Shallow water</li></ul>
+    <div class="tones"><div class="tone"><span style="background:#79C4C0"></span><b>base</b><code>#79C4C0</code></div><div class="tone"><span style="background:#9AD1CE"></span><b>light</b><code>#9AD1CE</code></div><div class="tone"><span style="background:#52B8B3"></span><b>dark</b><code>#52B8B3</code></div><div class="tone"><span style="background:#3FA29D"></span><b>deep</b><code>#3FA29D</code></div></div>
+  </div>
+</article></div><h2>Warmth</h2><div class="grid"><article class="tok">
+  <div class="chip" style="background:#F2B33D"></div>
+  <div class="meta">
+    <h3>sun</h3>
+    <code class="big">#F2B33D</code>
+    <p>Golden ochre. Light, wheat, lamplight, brand accent.</p>
+    <ul><li>Dry grass, the whole ground plane</li><li>THE HARE</li><li>Kouki's eye discs and feet</li><li>Lamplight</li></ul>
+    <div class="tones"><div class="tone"><span style="background:#F2B33D"></span><b>base</b><code>#F2B33D</code></div><div class="tone"><span style="background:#F3C36A"></span><b>light</b><code>#F3C36A</code></div><div class="tone"><span style="background:#F0A10C"></span><b>dark</b><code>#F0A10C</code></div><div class="tone"><span style="background:#CB8708"></span><b>deep</b><code>#CB8708</code></div></div>
+  </div>
+</article><article class="tok">
+  <div class="chip" style="background:#D0603C"></div>
+  <div class="meta">
+    <h3>terracotta</h3>
+    <code class="big">#D0603C</code>
+    <p>Roofs, clay, cheeks, warm accent.</p>
+    <ul><li>The road surface, bare earth</li><li>Poppies, oleander flowers</li><li>Kouki's beak</li><li>Hare inner ear and nose</li></ul>
+    <div class="tones"><div class="tone"><span style="background:#D0603C"></span><b>base</b><code>#D0603C</code></div><div class="tone"><span style="background:#D77F63"></span><b>light</b><code>#D77F63</code></div><div class="tone"><span style="background:#B24927"></span><b>dark</b><code>#B24927</code></div><div class="tone"><span style="background:#923A1E"></span><b>deep</b><code>#923A1E</code></div></div>
+  </div>
+</article></div><h2>Reserved</h2><div class="grid"><article class="tok">
+  <div class="chip" style="background:#6B4A78"></div>
+  <div class="meta">
+    <h3>plum <em class="res">reserved</em></h3>
+    <code class="big">#6B4A78</code>
+    <p>RESERVED. Host character only, plus dusk skies. See host colour lock.</p>
+    <ul><li>KOUKI ONLY — body, tufts, wing</li><li>Dusk skies</li><li>Forbidden in Aesop backgrounds</li></ul>
+    <div class="tones"><div class="tone"><span style="background:#6B4A78"></span><b>base</b><code>#6B4A78</code></div><div class="tone"><span style="background:#835E92"></span><b>light</b><code>#835E92</code></div><div class="tone"><span style="background:#50345B"></span><b>dark</b><code>#50345B</code></div><div class="tone"><span style="background:#392442"></span><b>deep</b><code>#392442</code></div></div>
+  </div>
+</article></div>
+<h2>Scene ramps</h2>
+<p class="lede" style="margin-bottom:16px">Each scene key assigns the palette to the five depth
+planes. This is what decides what dominates a frame &mdash; more than the colours themselves.</p>
+<div class="ramp">
+  <div class="ramp-h"><h3>midday-white</h3><p>Bleached Greek noon. High key, hard shadows, heat.</p></div>
+  <div class="bands"><div class="band" style="background:#F7F1E4"><b>sky</b><span>bone</span></div><div class="band" style="background:#6E8B4A"><b>ground</b><span>olive</span></div><div class="band" style="background:#1F5FA8"><b>far</b><span>aegean</span></div><div class="band" style="background:#79C4C0"><b>mid</b><span>seafoam</span></div><div class="band" style="background:#23212B"><b>foreground</b><span>ink</span></div></div>
+  <p class="use">Village squares, midday journeys, the Hare's overconfidence.</p>
+</div><div class="ramp">
+  <div class="ramp-h"><h3>dusk-violet</h3><p>Evening settling. Warm windows against a cooling sky.</p></div>
+  <div class="bands"><div class="band" style="background:#6B4A78"><b>sky</b><span>plum</span></div><div class="band" style="background:#123A68"><b>ground</b><span>deepsea</span></div><div class="band" style="background:#1F5FA8"><b>far</b><span>aegean</span></div><div class="band" style="background:#D0603C"><b>mid</b><span>terracotta</span></div><div class="band" style="background:#23212B"><b>foreground</b><span>ink</span></div></div>
+  <p class="use">Endings, going home, the frame story with the host.</p>
+</div><div class="ramp">
+  <div class="ramp-h"><h3>olive-shade</h3><p>Under the trees. Dappled but flat, cool and calm.</p></div>
+  <div class="bands"><div class="band" style="background:#79C4C0"><b>sky</b><span>seafoam</span></div><div class="band" style="background:#6E8B4A"><b>ground</b><span>olive</span></div><div class="band" style="background:#1F5FA8"><b>far</b><span>aegean</span></div><div class="band" style="background:#123A68"><b>mid</b><span>deepsea</span></div><div class="band" style="background:#23212B"><b>foreground</b><span>ink</span></div></div>
+  <p class="use">Forests, groves, the Tortoise's steady middle stretch.</p>
+</div><div class="ramp">
+  <div class="ramp-h"><h3>storm-grey</h3><p>Cold, damp, northern. One warm point of light only.</p></div>
+  <div class="bands"><div class="band" style="background:#8B93A0"><b>sky</b><span>storm</span></div><div class="band" style="background:#6E8B4A"><b>ground</b><span>olive</span></div><div class="band" style="background:#123A68"><b>far</b><span>deepsea</span></div><div class="band" style="background:#1F5FA8"><b>mid</b><span>aegean</span></div><div class="band" style="background:#23212B"><b>foreground</b><span>ink</span></div></div>
+  <p class="use">British tales, danger, weather, moments of fear.</p>
+</div><div class="ramp">
+  <div class="ramp-h"><h3>hearth-amber</h3><p>Indoors, lamplit, safe. The storytelling colour.</p></div>
+  <div class="bands"><div class="band" style="background:#F2B33D"><b>sky</b><span>sun</span></div><div class="band" style="background:#D0603C"><b>ground</b><span>terracotta</span></div><div class="band" style="background:#6B4A78"><b>far</b><span>plum</span></div><div class="band" style="background:#123A68"><b>mid</b><span>deepsea</span></div><div class="band" style="background:#23212B"><b>foreground</b><span>ink</span></div></div>
+  <p class="use">Host framing shots, kitchens, resolutions, the last beat.</p>
+</div><div class="ramp">
+  <div class="ramp-h"><h3>sea-deep</h3><p>Night and deep water. Cool, quiet, vast.</p></div>
+  <div class="bands"><div class="band" style="background:#123A68"><b>sky</b><span>deepsea</span></div><div class="band" style="background:#1F5FA8"><b>ground</b><span>aegean</span></div><div class="band" style="background:#79C4C0"><b>far</b><span>seafoam</span></div><div class="band" style="background:#6B4A78"><b>mid</b><span>plum</span></div><div class="band" style="background:#23212B"><b>foreground</b><span>ink</span></div></div>
+  <p class="use">Sea crossings, night, islands, wonder.</p>
+</div>
+<h2>Rules</h2>
+<div class="rules"><div class="rule"><h3>Plum lock</h3><p>Kouki is the only plum object in any frame she appears in. Nothing else may use plum while she is on screen — not a flower, not a shadow, not a sky. This single rule does more for her identity than every other measure combined.</p></div><div class="rule"><h3>Warm balance</h3><p>terracotta and sun are ACCENTS, never both large in one frame. Only hearth-amber may ground a scene in terracotta. Grounds default to olive, aegean, seafoam or deepsea — the land is green and the distance is blue.</p></div><div class="rule"><h3>The hare's ground</h3><p>He is sun; dry grass is sun. He must never stand on a sun or terracotta ground or he disappears. This is what forced the ramp rebalance.</p></div><div class="rule"><h3>The tortoise's skin</h3><p>Never bone. Backgrounds use bone constantly for limestone, dust and walls, and she vanished into every one of them. seafoam is the fix.</p></div><div class="rule"><h3>One gradient</h3><p>Exactly one soft vertical sky gradient per plate. Nothing else gradients, ever. Shading is flat two-tone, drawn as a shape.</p></div><div class="rule"><h3>Never pure</h3><p>No #000, no #FFF. ink and bone are the ends of the range.</p></div></div>
+<footer>
+brand/tokens.json &mdash; source of truth. Figma mirrors it; tokens.json wins on any disagreement.<br>
+Derived tones (light +9% L, dark &minus;10% L, deep &minus;18% L) are computed at build time in
+pipeline/build_cast.py::shift() &mdash; 10 tokens, 40 tones, none of them invented.<br>
+Change a hex here, then rebuild: build_cast.py, build_plates.py, build_palette.py.
+</footer>
+</body></html>

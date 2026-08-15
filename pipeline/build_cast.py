@@ -37,7 +37,10 @@ def shift(hexstr, dl=0.0, ds=0.0):
     h = hexstr.lstrip("#")
     r, g, b = (int(h[i:i+2], 16) / 255 for i in (0, 2, 4))
     hh, ll, ss = colorsys.rgb_to_hls(r, g, b)
-    ll = max(0.0, min(1.0, ll + dl))
+    # Clamp inside the legal range, never to 0 or 1 — the bible forbids pure
+    # black and pure white, and unclamped shifts drove ink and bone straight
+    # into both. ink and bone ARE the ends of the range.
+    ll = max(0.085, min(0.955, ll + dl))
     ss = max(0.0, min(1.0, ss + ds))
     r, g, b = colorsys.hls_to_rgb(hh, ll, ss)
     return "#%02X%02X%02X" % (round(r * 255), round(g * 255), round(b * 255))
