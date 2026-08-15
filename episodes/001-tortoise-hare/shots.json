@@ -33,7 +33,9 @@
           "y": 56,
           "scale": 0.42
         }
-      ]
+      ],
+      "location": "perch",
+      "framing": "wide"
     },
     {
       "id": 2,
@@ -58,7 +60,9 @@
             0
           ]
         }
-      ]
+      ],
+      "location": "road",
+      "framing": "wide"
     },
     {
       "id": 3,
@@ -79,7 +83,9 @@
           "y": 56,
           "scale": 0.95
         }
-      ]
+      ],
+      "location": "road",
+      "framing": "close"
     },
     {
       "id": 4,
@@ -100,7 +106,9 @@
           "y": 62,
           "scale": 0.72
         }
-      ]
+      ],
+      "location": "grove",
+      "framing": "low"
     },
     {
       "id": 5,
@@ -121,7 +129,9 @@
           "y": 64,
           "scale": 0.42
         }
-      ]
+      ],
+      "location": "road",
+      "framing": "mid"
     },
     {
       "id": 6,
@@ -152,7 +162,9 @@
             0
           ]
         }
-      ]
+      ],
+      "location": "road",
+      "framing": "wide"
     },
     {
       "id": 7,
@@ -177,7 +189,9 @@
             -2
           ]
         }
-      ]
+      ],
+      "location": "road",
+      "framing": "extreme-wide"
     },
     {
       "id": 8,
@@ -199,7 +213,9 @@
           "scale": 0.62,
           "rot": -8
         }
-      ]
+      ],
+      "location": "grove",
+      "framing": "wide"
     },
     {
       "id": 9,
@@ -231,7 +247,9 @@
             0
           ]
         }
-      ]
+      ],
+      "location": "grove",
+      "framing": "tracking"
     },
     {
       "id": 10,
@@ -252,7 +270,9 @@
           "y": 58,
           "scale": 0.74
         }
-      ]
+      ],
+      "location": "road",
+      "framing": "mid"
     },
     {
       "id": 11,
@@ -273,7 +293,9 @@
           "y": 63,
           "scale": 0.6
         }
-      ]
+      ],
+      "location": "road",
+      "framing": "mid"
     },
     {
       "id": 12,
@@ -295,8 +317,15 @@
           "y": 56,
           "scale": 0.42
         }
-      ]
+      ],
+      "location": "perch",
+      "framing": "wide"
     }
   ],
-  "period": "archaic-greek"
+  "period": "archaic-greek",
+  "locations": {
+    "perch": "Kouki's olive branch. Frame story only — warm, enclosed, never the tale.",
+    "road": "The dusty track through the olive country. Start line, the long middle, the finish. One wide plate, panned.",
+    "grove": "Deep shade under the broad olive tree. Where the hare sleeps and the tortoise passes."
+  }
 }
